@@ -1,0 +1,85 @@
+/* Profile section: intro copy, capability cards and the horizontal band. */
+
+.info-block {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 26px;
+  padding: 108px 0 36px;
+}
+
+.info-block__intro {
+  max-width: 620px;
+}
+
+.info-block__intro h2 {
+  margin: 16px 0;
+  font-size: clamp(2rem, 4vw, 3.6rem);
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+}
+
+.info-block__intro p:last-child {
+  max-width: 54ch;
+}
+
+.info-block__cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.glass-card {
+  min-height: 220px;
+  padding: 24px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: 30px;
+  box-shadow: var(--panel-shadow);
+}
+
+.glass-card h3 {
+  margin: 18px 0 10px;
+  font-size: 1.34rem;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+
+.band {
+  margin-top: 42px;
+  padding: 28px 32px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(143, 92, 255, 0.14), rgba(47, 212, 122, 0.08));
+  text-align: center;
+  box-shadow: var(--panel-shadow);
+}
+
+.band p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.band strong {
+  color: var(--text-strong);
+}
+
+@media (max-width: 1080px) {
+  .info-block {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .info-block {
+    padding-top: 80px;
+  }
+
+  .info-block__cards {
+    grid-template-columns: 1fr;
+  }
+
+  .band {
+    border-radius: 28px;
+    padding: 24px 20px;
+  }
+}

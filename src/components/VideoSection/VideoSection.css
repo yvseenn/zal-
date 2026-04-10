@@ -1,0 +1,43 @@
+/* Video section: latest clip embed with supporting editorial copy. */
+
+.video {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.86fr) minmax(0, 1.14fr);
+  gap: 24px;
+  align-items: start;
+  padding: 116px 0 24px;
+}
+
+.video__copy h2 {
+  margin: 16px 0;
+  font-size: clamp(2rem, 4vw, 3.6rem);
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+}
+
+.video__frame {
+  overflow: hidden;
+  border-radius: 30px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.03);
+  box-shadow: var(--panel-shadow);
+}
+
+.video__frame iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  display: block;
+  border: 0;
+}
+
+@media (max-width: 1080px) {
+  .video {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .video {
+    padding-top: 80px;
+  }
+}

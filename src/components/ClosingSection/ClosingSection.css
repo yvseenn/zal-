@@ -1,0 +1,38 @@
+/* Final CTA block: compact closing pitch plus external links. */
+
+.closing {
+  padding: 116px 0 96px;
+}
+
+.closing__panel {
+  max-width: 620px;
+  padding: 34px;
+  border: 1px solid var(--border);
+  background:
+    radial-gradient(circle at top left, rgba(143, 92, 255, 0.18), transparent 36%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
+    rgba(8, 10, 13, 0.56);
+  border-radius: 30px;
+  box-shadow: var(--panel-shadow);
+}
+
+.closing__panel h2 {
+  margin: 16px 0;
+  font-size: clamp(2rem, 4vw, 3.6rem);
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+}
+
+.closing__panel p:last-of-type {
+  max-width: 54ch;
+}
+
+@media (max-width: 720px) {
+  .closing {
+    padding-top: 80px;
+  }
+
+  .closing__panel {
+    padding: 24px;
+  }
+}
