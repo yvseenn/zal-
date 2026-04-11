@@ -33,22 +33,23 @@
   border-radius: 30px;
   box-shadow: var(--panel-shadow);
   transition:
-    transform 200ms ease,
-    border-color 200ms ease,
-    box-shadow 200ms ease;
+    transform var(--motion-base) ease,
+    border-color var(--motion-base) ease,
+    box-shadow var(--motion-base) ease;
+  will-change: transform;
 }
 
 .release-card:hover {
   transform: translateY(-8px);
-  border-color: rgba(143, 92, 255, 0.36);
+  border-color: rgba(143, 230, 255, 0.54);
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.22);
 }
 
 .release-card.is-highlighted {
-  border-color: rgba(47, 212, 122, 0.48);
+  border-color: rgba(143, 230, 255, 0.64);
   box-shadow:
-    0 0 0 1px rgba(47, 212, 122, 0.42),
-    0 30px 70px rgba(18, 112, 68, 0.22);
+    0 0 0 1px rgba(143, 230, 255, 0.54),
+    0 30px 70px rgba(58, 164, 214, 0.28);
 }
 
 .release-card__art {
@@ -57,6 +58,36 @@
   overflow: hidden;
   border-radius: 20px;
   background: rgba(255, 255, 255, 0.04);
+  isolation: isolate;
+}
+
+.release-card__art::before {
+  content: '';
+  position: absolute;
+  inset: -18% auto -18% -42%;
+  width: 42%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(220, 248, 255, 0.24) 48%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-18deg) translateX(-180%);
+  z-index: 2;
+  pointer-events: none;
+  animation: releaseShimmer 5.8s ease-in-out infinite;
+  animation-delay: var(--release-delay, 0s);
+}
+
+.release-card__art::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 22% 16%, rgba(224, 249, 255, 0.2), transparent 28%),
+    linear-gradient(180deg, rgba(4, 10, 15, 0) 42%, rgba(4, 10, 15, 0.22) 100%);
+  z-index: 1;
+  pointer-events: none;
 }
 
 .release-card__art img {
@@ -67,13 +98,15 @@
   opacity: 1;
   backface-visibility: hidden;
   transition:
-    transform 260ms ease,
-    filter 260ms ease;
+    transform var(--motion-base) ease,
+    filter var(--motion-base) ease;
+  animation: releaseFloat var(--motion-loop-base) ease-in-out infinite;
+  animation-delay: var(--release-delay, 0s);
 }
 
 .release-card:hover .release-card__art img {
-  transform: scale(1.04);
-  filter: saturate(1.06);
+  transform: scale(1.06);
+  filter: saturate(1.1) brightness(1.03);
 }
 
 .release-card__status {
@@ -104,6 +137,49 @@
   margin: 0;
 }
 
+.release-card.is-highlighted .release-card__art {
+  box-shadow:
+    inset 0 0 0 1px rgba(143, 230, 255, 0.26),
+    0 20px 48px rgba(47, 140, 193, 0.18);
+}
+
+.release-card.is-highlighted .release-card__art::before {
+  animation-duration: 3.8s;
+}
+
+.release-card.is-highlighted .release-card__art img {
+  animation-duration: 3.4s;
+  filter: saturate(1.08) brightness(1.02);
+}
+
+@keyframes releaseFloat {
+  0%,
+  100% {
+    transform: scale(1.01) translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: scale(1.045) translate3d(0, -8px, 0);
+  }
+}
+
+@keyframes releaseShimmer {
+  0%,
+  100% {
+    transform: skewX(-18deg) translateX(-180%);
+    opacity: 0;
+  }
+
+  16% {
+    opacity: 0.55;
+  }
+
+  34% {
+    transform: skewX(-18deg) translateX(340%);
+    opacity: 0;
+  }
+}
+
 @media (max-width: 1080px) {
   .releases__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -117,5 +193,12 @@
 
   .releases__grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .release-card__art::before,
+  .release-card__art img {
+    animation: none;
   }
 }

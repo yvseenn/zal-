@@ -13,14 +13,17 @@ export function TimelineSection({ timeline }) {
         </p>
       </div>
 
-      <div className="timeline-layout__list">
+      <div className="timeline-layout__list" data-reveal>
         {/* Each milestone is rendered from data to avoid hardcoding more markup later. */}
         {timeline.map((item, index) => (
           <article
             className="timeline-item"
             key={item.year}
             data-reveal
-            style={{ transitionDelay: `${index * 120}ms` }}
+            style={{
+              transitionDelay: `${index * 120}ms`,
+              '--timeline-delay': `${index * 0.4}s`,
+            }}
           >
             <div className="timeline-item__rail" aria-hidden="true">
               <span className="timeline-item__dot" />

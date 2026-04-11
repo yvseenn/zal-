@@ -49,7 +49,7 @@
   padding: 28px 32px;
   border: 1px solid var(--border);
   border-radius: 999px;
-  background: linear-gradient(135deg, rgba(143, 92, 255, 0.14), rgba(47, 212, 122, 0.08));
+  background: linear-gradient(135deg, rgba(143, 230, 255, 0.2), rgba(70, 173, 224, 0.14));
   text-align: center;
   box-shadow: var(--panel-shadow);
 }

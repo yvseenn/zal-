@@ -1,0 +1,30 @@
+<svg width="720" height="720" viewBox="0 0 720 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bg" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(360 360) rotate(90) scale(360)">
+      <stop offset="0.08" stop-color="#02060B"/>
+      <stop offset="0.72" stop-color="#060D15"/>
+      <stop offset="1" stop-color="#020408"/>
+    </radialGradient>
+    <linearGradient id="ring" x1="111" y1="98" x2="604" y2="613" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E4FBFF"/>
+      <stop offset="0.44" stop-color="#9BE8FF"/>
+      <stop offset="1" stop-color="#48BCEC"/>
+    </linearGradient>
+    <linearGradient id="gloss" x1="190" y1="120" x2="448" y2="394" gradientUnits="userSpaceOnUse">
+      <stop stop-color="white" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="white" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <circle cx="360" cy="360" r="334" fill="url(#bg)"/>
+  <circle cx="360" cy="360" r="334" stroke="rgba(255,255,255,0.08)"/>
+  <g opacity="0.22">
+    <circle cx="360" cy="360" r="302" stroke="#09111C" stroke-width="24"/>
+    <circle cx="360" cy="360" r="254" stroke="#09111C" stroke-width="18"/>
+    <circle cx="360" cy="360" r="208" stroke="#09111C" stroke-width="14"/>
+  </g>
+  <circle cx="360" cy="360" r="181" stroke="url(#ring)" stroke-width="34"/>
+  <circle cx="360" cy="360" r="104" stroke="#B7EFFF" stroke-opacity="0.9" stroke-width="15"/>
+  <circle cx="360" cy="360" r="44" fill="#02060B" stroke="#D5F8FF" stroke-opacity="0.96" stroke-width="10"/>
+  <path d="M192 142C250 92 328 65 415 67" stroke="url(#gloss)" stroke-width="24" stroke-linecap="round"/>
+  <path d="M256 132C311 99 367 86 428 91" stroke="url(#gloss)" stroke-width="12" stroke-linecap="round" opacity="0.72"/>
+</svg>

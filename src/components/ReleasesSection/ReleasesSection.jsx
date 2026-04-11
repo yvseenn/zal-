@@ -19,7 +19,10 @@ export function ReleasesSection({ highlightTitle, isPreviewActive, releases }) {
               className={`release-card${isHighlighted ? ' is-highlighted' : ''}`}
               key={release.title}
               data-reveal
-              style={{ transitionDelay: `${index * 90}ms` }}
+              style={{
+                transitionDelay: `${index * 90}ms`,
+                '--release-delay': `${index * 0.45}s`,
+              }}
             >
               <div className="release-card__art">
                 <img

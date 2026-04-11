@@ -9,6 +9,7 @@
   display: flex;
   justify-content: center;
   pointer-events: none;
+  animation: topbarEntrance 0.9s var(--ease-standard) both;
 }
 
 .topbar {
@@ -20,22 +21,26 @@
   border-radius: 24px;
   pointer-events: auto;
   backdrop-filter: blur(14px);
-  background: rgba(8, 10, 14, 0.42);
+  background: rgba(6, 11, 16, 0.48);
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow:
     0 18px 50px rgba(0, 0, 0, 0.18),
     inset 0 1px 0 rgba(255, 255, 255, 0.04);
   transition:
-    backdrop-filter 220ms ease,
-    background-color 220ms ease,
-    border-color 220ms ease,
-    box-shadow 220ms ease,
-    transform 220ms ease;
+    backdrop-filter var(--motion-base) ease,
+    background-color var(--motion-base) ease,
+    border-color var(--motion-base) ease,
+    box-shadow var(--motion-base) ease,
+    transform var(--motion-base) ease,
+    padding var(--motion-base) ease,
+    border-radius var(--motion-base) ease;
 }
 
 .topbar.is-scrolled {
   backdrop-filter: blur(22px);
-  background: rgba(4, 6, 10, 0.72);
+  background: rgba(4, 9, 14, 0.76);
+  padding: 10px 14px;
+  border-radius: 20px;
   border-color: rgba(255, 255, 255, 0.12);
   box-shadow:
     0 22px 60px rgba(0, 0, 0, 0.24),
@@ -47,6 +52,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  transition: gap var(--motion-base) ease;
 }
 
 .topbar__avatar-button {
@@ -60,6 +66,9 @@
   border-radius: 50%;
   background: transparent;
   cursor: pointer;
+  transition:
+    width var(--motion-base) ease,
+    height var(--motion-base) ease;
 }
 
 .topbar__avatar {
@@ -69,14 +78,26 @@
   object-fit: cover;
   border: 1px solid rgba(255, 255, 255, 0.18);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28);
+  transition:
+    transform var(--motion-base) ease,
+    box-shadow var(--motion-base) ease,
+    border-color var(--motion-base) ease,
+    width var(--motion-base) ease,
+    height var(--motion-base) ease;
 }
 
 .topbar__avatar-button.is-active .topbar__avatar {
   animation: spinSlow 2.2s linear infinite;
 }
 
+.topbar__avatar-button:hover .topbar__avatar {
+  transform: translateY(-1px) scale(1.03);
+  box-shadow: 0 16px 36px rgba(63, 152, 206, 0.24);
+  border-color: rgba(173, 239, 255, 0.34);
+}
+
 .topbar__avatar-button:focus-visible {
-  outline: 1px solid rgba(47, 212, 122, 0.72);
+  outline: 1px solid rgba(143, 230, 255, 0.92);
   outline-offset: 4px;
 }
 
@@ -85,6 +106,7 @@
   flex-direction: column;
   justify-content: center;
   gap: 2px;
+  transition: gap var(--motion-base) ease;
 }
 
 .topbar__brand-row {
@@ -99,6 +121,9 @@
   letter-spacing: 0.42em;
   text-transform: uppercase;
   color: var(--text-strong);
+  transition:
+    font-size var(--motion-base) ease,
+    letter-spacing var(--motion-base) ease;
 }
 
 .topbar__handle {
@@ -107,6 +132,9 @@
   font-size: 0.72rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
+  transition:
+    font-size var(--motion-base) ease,
+    opacity var(--motion-base) ease;
 }
 
 .topbar__status {
@@ -118,11 +146,15 @@
   font-size: 0.64rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
+  transition:
+    padding var(--motion-base) ease,
+    font-size var(--motion-base) ease,
+    letter-spacing var(--motion-base) ease;
 }
 
 .topbar__status.is-active {
-  color: #09110c;
-  background: linear-gradient(135deg, #8f5cff 0%, #2fd47a 100%);
+  color: #041018;
+  background: linear-gradient(135deg, #e1fbff 0%, #9ae8ff 46%, #47b7ec 100%);
   border-color: transparent;
 }
 
@@ -131,6 +163,57 @@
   gap: 8px;
   flex-wrap: wrap;
   justify-content: flex-end;
+  transition: gap var(--motion-base) ease;
+}
+
+.topbar.is-scrolled .topbar__profile {
+  gap: 8px;
+}
+
+.topbar.is-scrolled .topbar__avatar-button {
+  width: 48px;
+  height: 48px;
+}
+
+.topbar.is-scrolled .topbar__avatar {
+  width: 44px;
+  height: 44px;
+}
+
+.topbar.is-scrolled .topbar__identity {
+  gap: 1px;
+}
+
+.topbar.is-scrolled .topbar__brand {
+  font-size: 0.8rem;
+  letter-spacing: 0.32em;
+}
+
+.topbar.is-scrolled .topbar__handle {
+  font-size: 0.66rem;
+  opacity: 0.84;
+}
+
+.topbar.is-scrolled .topbar__status {
+  padding: 0.26rem 0.54rem;
+  font-size: 0.58rem;
+  letter-spacing: 0.11em;
+}
+
+.topbar.is-scrolled .topbar__meta {
+  gap: 6px;
+}
+
+@keyframes topbarEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(-18px) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 @media (max-width: 720px) {
@@ -148,5 +231,11 @@
 
   .topbar__profile {
     width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .topbar-shell {
+    animation: none;
   }
 }

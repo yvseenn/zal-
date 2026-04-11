@@ -1,7 +1,9 @@
 import './ClosingSection.css'
+import { AppleMusicIcon, InstagramIcon, SpotifyIcon } from '../SocialIcons.jsx'
 
 // Closing CTA block for contact-style actions and external platform links.
-export function ClosingSection({ instagramUrl, spotifyUrl }) {
+// Reuses the same button variants as the hero so both CTA rows stay consistent.
+export function ClosingSection({ appleMusicUrl, instagramUrl, spotifyUrl }) {
   return (
     <section className="section closing" data-reveal>
       <div className="closing__panel">
@@ -13,16 +15,38 @@ export function ClosingSection({ instagramUrl, spotifyUrl }) {
         </p>
 
         <div className="hero__actions">
-          <a className="button" href={spotifyUrl} target="_blank" rel="noreferrer">
-            Abrir Spotify
+          <a
+            className="button button--spotify"
+            href={spotifyUrl}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <span className="button__icon" aria-hidden="true">
+              <SpotifyIcon />
+            </span>
+            <span>Spotify</span>
           </a>
           <a
-            className="button button--secondary"
+            className="button button--secondary button--apple"
+            href={appleMusicUrl}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <span className="button__icon" aria-hidden="true">
+              <AppleMusicIcon />
+            </span>
+            <span>Apple Music</span>
+          </a>
+          <a
+            className="button button--secondary button--instagram"
             href={instagramUrl}
             target="_blank"
             rel="noreferrer"
           >
-            Contactar por Instagram
+            <span className="button__icon" aria-hidden="true">
+              <InstagramIcon />
+            </span>
+            <span>Instagram</span>
           </a>
         </div>
       </div>

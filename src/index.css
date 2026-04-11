@@ -1,14 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Instrument+Serif:ital@0;1&display=swap');
 
-/* Global design tokens and page-wide defaults. */
+/* Global design tokens and page-wide defaults.
+   Change these first when you want to shift the whole art direction. */
 :root {
   font-family: 'Space Grotesk', sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color: #f5eee4;
+  color: #f2f6f8;
   background:
-    radial-gradient(circle at top, rgba(123, 63, 228, 0.24), transparent 26%),
-    linear-gradient(180deg, #040406 0%, #0a0a10 48%, #030406 100%);
+    radial-gradient(circle at top, rgba(137, 238, 218, 0.18), transparent 28%),
+    linear-gradient(180deg, #030405 0%, #070a0d 46%, #020304 100%);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -17,18 +18,27 @@
   --display: 'Space Grotesk', sans-serif;
   --serif: 'Instrument Serif', serif;
 
-  --text-strong: #f4efff;
-  --text: rgba(233, 243, 235, 0.86);
-  --text-soft: rgba(212, 222, 229, 0.72);
-  --text-dim: rgba(195, 202, 209, 0.54);
-  --accent: #8f5cff;
-  --border: rgba(255, 255, 255, 0.1);
-  --border-strong: rgba(255, 255, 255, 0.2);
-  --surface: linear-gradient(180deg, rgba(255, 255, 255, 0.065), rgba(255, 255, 255, 0.03));
-  --surface-soft: rgba(255, 255, 255, 0.04);
+  --text-strong: #f3f7f9;
+  --text: rgba(220, 229, 234, 0.86);
+  --text-soft: rgba(198, 212, 219, 0.84);
+  --text-dim: rgba(152, 171, 180, 0.68);
+  --accent: #93f0d5;
+  --accent-strong: #e0fff7;
+  --border: rgba(182, 222, 214, 0.18);
+  --border-strong: rgba(210, 240, 234, 0.3);
+  --surface: linear-gradient(180deg, rgba(180, 232, 220, 0.085), rgba(255, 255, 255, 0.018));
+  --surface-soft: rgba(170, 220, 210, 0.08);
   --panel-shadow:
-    0 18px 60px rgba(0, 0, 0, 0.26),
-    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    0 18px 60px rgba(0, 0, 0, 0.38),
+    inset 0 1px 0 rgba(222, 245, 239, 0.08);
+  --motion-swift: 180ms;
+  --motion-base: 240ms;
+  --motion-slow: 820ms;
+  --motion-loop-fast: 4.8s;
+  --motion-loop-base: 7.2s;
+  --motion-loop-slow: 10.8s;
+  --ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-emphasis: cubic-bezier(0.16, 0.84, 0.22, 1);
 
   color-scheme: dark;
 }
@@ -53,9 +63,9 @@ body::before {
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(circle at 12% 20%, rgba(143, 92, 255, 0.16), transparent 24%),
-    radial-gradient(circle at 88% 18%, rgba(47, 212, 122, 0.16), transparent 20%),
-    radial-gradient(circle at 50% 88%, rgba(106, 68, 255, 0.1), transparent 24%);
+    radial-gradient(circle at 12% 20%, rgba(125, 232, 211, 0.18), transparent 24%),
+    radial-gradient(circle at 88% 18%, rgba(109, 167, 196, 0.14), transparent 20%),
+    radial-gradient(circle at 50% 88%, rgba(196, 245, 232, 0.12), transparent 24%);
   z-index: -1;
 }
 

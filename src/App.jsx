@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import './styles/app-shell.css'
 import { ClosingSection } from './components/ClosingSection/ClosingSection.jsx'
 import { HeroSection } from './components/HeroSection/HeroSection.jsx'
@@ -7,28 +7,62 @@ import { ReleasesSection } from './components/ReleasesSection/ReleasesSection.js
 import { TimelineSection } from './components/TimelineSection/TimelineSection.jsx'
 import { TopBar } from './components/TopBar/TopBar.jsx'
 import { VideoSection } from './components/VideoSection/VideoSection.jsx'
-import {
-  facts,
-  highlightPreview,
-  instagramProfileImage,
-  instagramUrl,
-  latestVideo,
-  profileCards,
-  releases,
-  spotifyUrl,
-  timeline,
-} from './data/artistData.js'
 import { usePreviewAudio } from './hooks/usePreviewAudio.js'
 import { useRevealOnScroll } from './hooks/useRevealOnScroll.js'
+import { useSiteContent } from './hooks/useSiteContent.js'
+import { defaultSiteContent } from './data/artistData.js'
+
+// Central section router: the public page order can now change in Supabase
+// without having to rewrite the component tree by hand.
+function renderPageSection(section, siteContent, isPlaying) {
+  switch (section.sectionKey) {
+    case 'hero':
+      return (
+        <HeroSection
+          appleMusicUrl={siteContent.appleMusicUrl}
+          facts={siteContent.facts}
+          instagramUrl={siteContent.instagramUrl}
+          isPreviewActive={isPlaying}
+          spotifyUrl={siteContent.spotifyUrl}
+        />
+      )
+    case 'profile':
+      return <ProfileSection profileCards={siteContent.profileCards} />
+    case 'timeline':
+      return <TimelineSection timeline={siteContent.timeline} />
+    case 'releases':
+      return (
+        <ReleasesSection
+          highlightTitle={siteContent.highlightPreview.title}
+          isPreviewActive={isPlaying}
+          releases={siteContent.releases}
+        />
+      )
+    case 'video':
+      return <VideoSection latestVideo={siteContent.latestVideo} />
+    case 'closing':
+      return (
+        <ClosingSection
+          appleMusicUrl={siteContent.appleMusicUrl}
+          instagramUrl={siteContent.instagramUrl}
+          spotifyUrl={siteContent.spotifyUrl}
+        />
+      )
+    default:
+      return null
+  }
+}
 
 function App() {
   // Tracks scroll so the header and hero artwork can react to the page position.
   const [scrollValue, setScrollValue] = useState(0)
+  // This hook merges Supabase content with local fallback defaults.
+  const siteContent = useSiteContent()
 
   // Centralized preview control so header hover and hero visuals stay in sync.
   const { audioRef, isPlaying, playPreview, stopPreview } = usePreviewAudio({
-    src: highlightPreview.previewUrl,
-    startTime: highlightPreview.startTime,
+    src: siteContent.highlightPreview.previewUrl,
+    startTime: siteContent.highlightPreview.startTime,
   })
 
   // One observer for all scroll-reveal blocks keeps section components simple.
@@ -56,6 +90,11 @@ function App() {
 
   const heroShift = Math.min(scrollValue * 0.18, 120)
   const glowShift = Math.min(scrollValue * 0.12, 90)
+  // The live layout comes from pageSections, so drag-and-drop admin work can
+  // eventually reorder the page without touching this component again.
+  const orderedSections = [...siteContent.pageSections]
+    .filter((section) => section.isVisible)
+    .sort((left, right) => left.displayOrder - right.displayOrder)
 
   return (
     <div
@@ -67,7 +106,8 @@ function App() {
       }}
     >
       <TopBar
-        instagramProfileImage={instagramProfileImage}
+        fallbackProfileImage={defaultSiteContent.instagramProfileImage}
+        instagramProfileImage={siteContent.instagramProfileImage}
         isPreviewActive={isPlaying}
         isScrolled={scrollValue > 24}
         onPreviewStart={playPreview}
@@ -75,26 +115,20 @@ function App() {
       />
 
       <main className="page-main">
-        {/* Sections stay isolated so future edits can be made one block at a time. */}
-        <HeroSection
-          facts={facts}
-          instagramUrl={instagramUrl}
-          isPreviewActive={isPlaying}
-          spotifyUrl={spotifyUrl}
-        />
-        <ProfileSection profileCards={profileCards} />
-        <TimelineSection timeline={timeline} />
-        <ReleasesSection
-          highlightTitle={highlightPreview.title}
-          isPreviewActive={isPlaying}
-          releases={releases}
-        />
-        <VideoSection latestVideo={latestVideo} />
-        <ClosingSection instagramUrl={instagramUrl} spotifyUrl={spotifyUrl} />
+        {/* Layout now comes from content data, which is what the future admin will edit. */}
+        {orderedSections.map((section) => (
+          <Fragment key={section.sectionKey}>
+            {renderPageSection(section, siteContent, isPlaying)}
+          </Fragment>
+        ))}
       </main>
 
       {/* A single hidden audio element powers the hover interaction globally. */}
-      <audio ref={audioRef} preload="none" src={highlightPreview.previewUrl} />
+      <audio
+        ref={audioRef}
+        preload="none"
+        src={siteContent.highlightPreview.previewUrl}
+      />
     </div>
   )
 }

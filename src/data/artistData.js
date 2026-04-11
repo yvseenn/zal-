@@ -3,7 +3,9 @@
 const art = (url) => url.replace('/100x100bb.jpg', '/1200x1200bb.jpg')
 
 // External profile links used by CTAs and metadata blocks across the site.
+// When Supabase is connected, these become the fallback values only.
 export const spotifyUrl = 'https://open.spotify.com/intl-es/artist/4dLT2geeIDFaQTqOY140qC'
+export const appleMusicUrl = 'https://music.apple.com/es/artist/zal%C3%B8/1647227091'
 export const instagramUrl = 'https://www.instagram.com/zalo_wav/'
 export const instagramProfileImage =
   'https://scontent-mad2-1.cdninstagram.com/v/t51.82787-19/658964957_18415910443123861_8858687036493441465_n.jpg?stp=dst-jpg_s100x100_tt6&_nc_cat=108&ccb=7-5&_nc_sid=bf7eb4&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy42NTQuQzMifQ%3D%3D&_nc_ohc=h29fgLxacR4Q7kNvwGHxttv&_nc_oc=AdpDJklHE9bLK5T8YqrdASy9QTI1HRhU5fGy-eUqlRBVtCYULl72TvcAmJlIkzyqAds&_nc_zt=24&_nc_ht=scontent-mad2-1.cdninstagram.com&_nc_gid=LVohy9ObixZsPyOb81_0Rg&_nc_ss=7a20f&oh=00_Af0tf5aPh2aEKg-hOOCNdoABkVhalzywLM678jz6tH1_XQ&oe=69DF475C'
@@ -46,6 +48,17 @@ export const profileCards = [
     title: 'Uso',
     text: 'Portfolio preparado para salas, festivales, colaboraciones creativas, prensa y brand-facing decks.',
   },
+]
+
+// Page sections drive the public layout order. This becomes the bridge between
+// the future drag-and-drop admin and the live page renderer.
+export const pageSections = [
+  { sectionKey: 'hero', displayOrder: 0, isVisible: true, variant: 'default', config: {} },
+  { sectionKey: 'profile', displayOrder: 1, isVisible: true, variant: 'default', config: {} },
+  { sectionKey: 'timeline', displayOrder: 2, isVisible: true, variant: 'default', config: {} },
+  { sectionKey: 'releases', displayOrder: 3, isVisible: true, variant: 'default', config: {} },
+  { sectionKey: 'video', displayOrder: 4, isVisible: true, variant: 'default', config: {} },
+  { sectionKey: 'closing', displayOrder: 5, isVisible: true, variant: 'default', config: {} },
 ]
 
 // Timeline entries feed the "Trayectoria reciente" section in order.
@@ -141,3 +154,19 @@ export const releases = [
     ),
   },
 ]
+
+// Local fallback content used before Supabase is configured or when it fails.
+// Keep this object in sync with the shape returned by loadSiteContent().
+export const defaultSiteContent = {
+  spotifyUrl,
+  appleMusicUrl,
+  instagramUrl,
+  instagramProfileImage,
+  facts,
+  highlightPreview,
+  latestVideo,
+  profileCards,
+  pageSections,
+  timeline,
+  releases,
+}

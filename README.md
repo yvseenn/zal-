@@ -14,6 +14,7 @@ The site includes:
 
 - React
 - Vite
+- Supabase client bootstrap ready
 - Plain CSS split by component
 
 ## Run Locally
@@ -52,12 +53,43 @@ src/
   hooks/
     usePreviewAudio.js
     useRevealOnScroll.js
+    useSiteContent.js
+  lib/
+    supabase/
+    site-content/
   styles/
     app-shell.css
   App.jsx
   index.css
   main.jsx
 ```
+
+## Content Source
+
+The app currently works in two modes:
+
+1. Local fallback mode
+   - content comes from [src/data/artistData.js](/Users/yvseennn/Documents/zalo/src/data/artistData.js)
+2. Supabase mode
+   - if `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` are present, the app tries to load content from Supabase first
+   - if Supabase fails, it falls back to the local content automatically
+
+## Supabase Setup
+
+1. Create a Supabase project
+2. Copy [.env.example](/Users/yvseennn/Documents/zalo/.env.example) to `.env.local`
+3. Fill in:
+   - `VITE_SUPABASE_URL`
+   - `VITE_SUPABASE_ANON_KEY`
+4. Open the Supabase SQL editor
+5. Paste and run:
+   - [supabase/schema.sql](/Users/yvseennn/Documents/zalo/supabase/schema.sql)
+
+Current integration files:
+- [src/lib/supabase/env.js](/Users/yvseennn/Documents/zalo/src/lib/supabase/env.js)
+- [src/lib/supabase/client.js](/Users/yvseennn/Documents/zalo/src/lib/supabase/client.js)
+- [src/lib/site-content/loadSiteContent.js](/Users/yvseennn/Documents/zalo/src/lib/site-content/loadSiteContent.js)
+- [src/hooks/useSiteContent.js](/Users/yvseennn/Documents/zalo/src/hooks/useSiteContent.js)
 
 ## Where To Edit Content
 
@@ -75,6 +107,17 @@ This file controls:
 - profile cards
 - timeline items
 - release list and artwork
+
+Once Supabase is configured, those same concepts will live in:
+- `site_settings`
+- `timeline_items`
+- `songs`
+- `albums`
+- `page_sections`
+
+Layout order and visibility now also support a database-backed model:
+- `page_sections` decides the render order of the public sections
+- if `page_sections` is empty or unavailable, the app falls back to the local default order in [src/data/artistData.js](/Users/yvseennn/Documents/zalo/src/data/artistData.js)
 
 ## Common Edits
 
@@ -126,6 +169,25 @@ Append a new object to `timeline` in `src/data/artistData.js`:
 ```
 
 No component changes are needed.
+
+### Reorder the public page
+
+Edit or import rows into `page_sections` with these keys:
+
+```text
+hero
+profile
+timeline
+releases
+video
+closing
+```
+
+The public app sorts them by `display_order` and hides any row where `is_visible = false`.
+
+Reference:
+- [supabase/import/page_sections.csv](/Users/yvseennn/Documents/zalo/supabase/import/page_sections.csv)
+- [docs/page-sections-admin.md](/Users/yvseennn/Documents/zalo/docs/page-sections-admin.md)
 
 ### Change the latest videoclip
 

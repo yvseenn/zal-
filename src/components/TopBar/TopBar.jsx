@@ -1,7 +1,9 @@
 import './TopBar.css'
 
 // Floating navigation surface with the profile-driven preview trigger.
+// The image has a fallback because third-party avatar URLs can expire or rate-limit.
 export function TopBar({
+  fallbackProfileImage,
   instagramProfileImage,
   isPreviewActive,
   isScrolled,
@@ -24,8 +26,12 @@ export function TopBar({
           >
             <img
               className="topbar__avatar"
-              src={instagramProfileImage}
+              src={instagramProfileImage || fallbackProfileImage}
               alt="Foto de perfil de ZALØ en Instagram"
+              onError={(event) => {
+                event.currentTarget.onerror = null
+                event.currentTarget.src = fallbackProfileImage
+              }}
             />
           </button>
 

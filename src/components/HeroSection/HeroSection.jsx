@@ -1,7 +1,11 @@
 import './HeroSection.css'
+import { AppleMusicIcon, InstagramIcon, SpotifyIcon } from '../SocialIcons.jsx'
 
 // Main landing block: core artist pitch on the left, animated stage on the right.
+// The three CTAs below intentionally map to platform-specific button variants
+// so the social links stay visually distinct without custom markup per page.
 export function HeroSection({
+  appleMusicUrl,
   facts,
   instagramUrl,
   isPreviewActive,
@@ -12,8 +16,8 @@ export function HeroSection({
       <div className="hero__copy" data-reveal>
         <p className="eyebrow">Portfolio / artista urbano español</p>
         <h1 className="hero__title">
-          ZALØ
-          <span>presencia local, estética global.</span>
+          <span className="hero__title-main">ZALØ</span>
+          <span className="hero__title-subline">presencia local, estética global.</span>
         </h1>
         <p className="hero__lead">
           Artista urbano de Madrid con un proyecto centrado en reggaeton,
@@ -22,16 +26,38 @@ export function HeroSection({
         </p>
 
         <div className="hero__actions">
-          <a className="button" href={spotifyUrl} target="_blank" rel="noreferrer">
-            Escuchar en Spotify
+          <a
+            className="button button--spotify"
+            href={spotifyUrl}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <span className="button__icon" aria-hidden="true">
+              <SpotifyIcon />
+            </span>
+            <span>Spotify</span>
           </a>
           <a
-            className="button button--secondary"
+            className="button button--secondary button--apple"
+            href={appleMusicUrl}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <span className="button__icon" aria-hidden="true">
+              <AppleMusicIcon />
+            </span>
+            <span>Apple Music</span>
+          </a>
+          <a
+            className="button button--secondary button--instagram"
             href={instagramUrl}
             target="_blank"
             rel="noreferrer"
           >
-            Ver Instagram
+            <span className="button__icon" aria-hidden="true">
+              <InstagramIcon />
+            </span>
+            <span>Instagram</span>
           </a>
         </div>
 
@@ -46,8 +72,11 @@ export function HeroSection({
       <div className="hero__stage" data-reveal>
         <div className="hero__halo" />
         <div className="hero__grid" />
+        <div className="hero__beam" />
         {/* The vinyl reacts to the same hover state as the profile avatar. */}
-        <div className={`hero__vinyl${isPreviewActive ? ' is-active' : ''}`} />
+        <div className={`hero__vinyl${isPreviewActive ? ' is-active' : ''}`}>
+          <img src="/hero-vinyl.svg" alt="" aria-hidden="true" />
+        </div>
         <div className="hero__badge">
           <span>CV musical</span>
           <strong>2024-2025</strong>
