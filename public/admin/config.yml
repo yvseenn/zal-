@@ -158,4 +158,4 @@ collections:
               - { label: "Display Order", name: "displayOrder", widget: "number", value_type: "int", min: 0 }
               - { label: "Visible", name: "isVisible", widget: "boolean", default: true }
               - { label: "Variant", name: "variant", widget: "string", required: false }
-              - { label: "Config", name: "config", widget: "object", required: false, collapsed: true, fields: [] }
+              # Config is intentionally omitted from the editor. Keep it in JSON as `{}` for future use.
