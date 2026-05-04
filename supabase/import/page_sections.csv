@@ -1,7 +1,0 @@
-section_key,display_order,is_visible,variant,config
-hero,0,true,default,{}
-profile,1,true,default,{}
-timeline,2,true,default,{}
-releases,3,true,default,{}
-video,4,true,default,{}
-closing,5,true,default,{}

@@ -1,0 +1,10 @@
+{
+  "sections": [
+    { "sectionKey": "hero", "displayOrder": 0, "isVisible": true, "variant": "default", "config": {} },
+    { "sectionKey": "profile", "displayOrder": 1, "isVisible": true, "variant": "default", "config": {} },
+    { "sectionKey": "timeline", "displayOrder": 2, "isVisible": true, "variant": "default", "config": {} },
+    { "sectionKey": "releases", "displayOrder": 3, "isVisible": true, "variant": "default", "config": {} },
+    { "sectionKey": "video", "displayOrder": 4, "isVisible": true, "variant": "default", "config": {} },
+    { "sectionKey": "closing", "displayOrder": 5, "isVisible": true, "variant": "default", "config": {} }
+  ]
+}

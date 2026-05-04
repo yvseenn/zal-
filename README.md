@@ -9,12 +9,13 @@ The site includes:
 - real release artwork
 - vertical timeline
 - embedded latest videoclip
+- `/admin` dashboard (Decap CMS) for non-technical edits
 
 ## Stack
 
 - React
 - Vite
-- Supabase client bootstrap ready
+- Decap CMS (Git-based content editing)
 - Plain CSS split by component
 
 ## Run Locally
@@ -39,6 +40,11 @@ npm run lint
 ## Project Structure
 
 ```text
+public/
+  admin/
+    index.html
+    config.yml
+  uploads/
 src/
   components/
     TopBar/
@@ -48,15 +54,15 @@ src/
     ReleasesSection/
     VideoSection/
     ClosingSection/
-  data/
-    artistData.js
+  content/
+    site.json
+    songs.json
+    timeline.json
+    pageSections.json
+    siteContent.js
   hooks/
     usePreviewAudio.js
     useRevealOnScroll.js
-    useSiteContent.js
-  lib/
-    supabase/
-    site-content/
   styles/
     app-shell.css
   App.jsx
@@ -66,71 +72,27 @@ src/
 
 ## Content Source
 
-The app currently works in two modes:
-
-1. Local fallback mode
-   - content comes from [src/data/artistData.js](/Users/yvseennn/Documents/zalo/src/data/artistData.js)
-2. Supabase mode
-   - if `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` are present, the app tries to load content from Supabase first
-   - if Supabase fails, it falls back to the local content automatically
-
-## Supabase Setup
-
-1. Create a Supabase project
-2. Copy [.env.example](/Users/yvseennn/Documents/zalo/.env.example) to `.env.local`
-3. Fill in:
-   - `VITE_SUPABASE_URL`
-   - `VITE_SUPABASE_ANON_KEY`
-4. Open the Supabase SQL editor
-5. Paste and run:
-   - [supabase/schema.sql](/Users/yvseennn/Documents/zalo/supabase/schema.sql)
-
-Current integration files:
-- [src/lib/supabase/env.js](/Users/yvseennn/Documents/zalo/src/lib/supabase/env.js)
-- [src/lib/supabase/client.js](/Users/yvseennn/Documents/zalo/src/lib/supabase/client.js)
-- [src/lib/site-content/loadSiteContent.js](/Users/yvseennn/Documents/zalo/src/lib/site-content/loadSiteContent.js)
-- [src/hooks/useSiteContent.js](/Users/yvseennn/Documents/zalo/src/hooks/useSiteContent.js)
+The public site reads from JSON files in `src/content/` via:
+- `src/content/siteContent.js`
 
 ## Where To Edit Content
 
-Most editable content lives in:
-
-- [src/data/artistData.js](/Users/yvseennn/Documents/zalo/src/data/artistData.js)
-
-This file controls:
-- Spotify link
-- Instagram link
-- Instagram profile image URL
-- hero facts
-- hover preview song
-- latest videoclip
-- profile cards
-- timeline items
-- release list and artwork
-
-Once Supabase is configured, those same concepts will live in:
-- `site_settings`
-- `timeline_items`
-- `songs`
-- `albums`
-- `page_sections`
-
-Layout order and visibility now also support a database-backed model:
-- `page_sections` decides the render order of the public sections
-- if `page_sections` is empty or unavailable, the app falls back to the local default order in [src/data/artistData.js](/Users/yvseennn/Documents/zalo/src/data/artistData.js)
+You can edit content in two ways:
+1. Directly in JSON:
+   - `src/content/site.json` (links, hero/closing copy, preview, profile cards)
+   - `src/content/songs.json` (releases grid)
+   - `src/content/timeline.json` (timeline)
+   - `src/content/pageSections.json` (section order + visibility)
+2. Via the `/admin` dashboard (recommended for non-technical edits)
 
 ## Common Edits
 
 ### Change the song that plays on hover
 
-Edit `highlightPreview` in `src/data/artistData.js`:
+Edit `highlightPreview` in `src/content/site.json`:
 
-```js
-export const highlightPreview = {
-  title: 'DarkSide',
-  previewUrl: 'https://...',
-  startTime: 8,
-}
+```json
+{ "highlightPreview": { "title": "DarkSide", "previewUrl": "https://...", "startTime": 8 } }
 ```
 
 What each field does:
@@ -140,65 +102,41 @@ What each field does:
 
 ### Add a release to "Selección"
 
-Append a new object to `releases` in `src/data/artistData.js`:
+Append a new object to `songs` in `src/content/songs.json`:
 
-```js
+```json
 {
-  title: 'PLOMO PA ÉL',
-  year: '2026',
-  tag: 'Single',
-  note: 'Nuevo release dentro de la etapa más reciente del proyecto.',
-  artwork: art('https://is1-ssl.mzstatic.com/image/thumb/.../100x100bb.jpg'),
+  "title": "PLOMO PA ÉL",
+  "year": "2026",
+  "tag": "Single",
+  "note": "Nuevo release dentro de la etapa más reciente del proyecto.",
+  "artwork": "https://is1-ssl.mzstatic.com/image/thumb/.../1200x1200bb.jpg"
 }
 ```
 
 Notes:
-- `art()` converts Apple’s `100x100` artwork URL into a larger image
 - order matters: earlier items appear first
 
 ### Add a year to the timeline
 
-Append a new object to `timeline` in `src/data/artistData.js`:
+Append a new object to `items` in `src/content/timeline.json`:
 
-```js
-{
-  year: '2026',
-  title: 'Plomo Pa El',
-  text: 'Latest release.',
-}
+```json
+{ "year": "2026", "title": "Plomo Pa El", "text": "Latest release." }
 ```
 
 No component changes are needed.
 
 ### Reorder the public page
 
-Edit or import rows into `page_sections` with these keys:
-
-```text
-hero
-profile
-timeline
-releases
-video
-closing
-```
-
-The public app sorts them by `display_order` and hides any row where `is_visible = false`.
-
-Reference:
-- [supabase/import/page_sections.csv](/Users/yvseennn/Documents/zalo/supabase/import/page_sections.csv)
-- [docs/page-sections-admin.md](/Users/yvseennn/Documents/zalo/docs/page-sections-admin.md)
+Edit `sections` in `src/content/pageSections.json`.
 
 ### Change the latest videoclip
 
-Edit `latestVideo` in `src/data/artistData.js`:
+Edit `latestVideo` in `src/content/site.json`:
 
-```js
-export const latestVideo = {
-  youtubeId: 'q_0uMxsUveU',
-  title: 'Último videoclip',
-  note: 'Añadido desde el enlace que compartiste para presentar la etapa visual más reciente.',
-}
+```json
+{ "latestVideo": { "youtubeId": "q_0uMxsUveU", "title": "Último videoclip", "note": "..." } }
 ```
 
 ### Change the tab icon
@@ -244,3 +182,16 @@ The current project uses remote URLs for:
 That works, but it means the site depends on third-party URLs staying available.
 
 If you want a more stable deploy, the next step is to download those assets into `public/` and reference them locally.
+
+## Netlify Admin Setup (Decap CMS)
+
+This repo includes a ready-to-use Decap CMS dashboard at `/admin`:
+- `public/admin/index.html`
+- `public/admin/config.yml`
+
+To enable email/password login for a friend:
+1. Deploy the repo on Netlify
+2. Enable `Identity`
+3. Enable `Git Gateway`
+4. Invite your friend via email in Netlify Identity
+5. Visit `https://YOUR-SITE.netlify.app/admin/`

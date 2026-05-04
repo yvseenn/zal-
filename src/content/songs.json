@@ -1,0 +1,53 @@
+{
+  "songs": [
+    {
+      "title": "DarkSide",
+      "year": "2024",
+      "tag": "Single",
+      "note": "La preview activa del portfolio ahora sale de este lanzamiento.",
+      "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/11/80/ed/1180ed5e-8037-680c-7596-e020207eaece/artwork.jpg/1200x1200bb.jpg"
+    },
+    {
+      "title": "MI SELLO",
+      "year": "2024",
+      "tag": "Single",
+      "note": "Track de identidad y statement del proyecto.",
+      "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/c9/00/c6/c900c686-cc84-db47-15ce-036b4df983e3/artwork.jpg/1200x1200bb.jpg"
+    },
+    {
+      "title": "MAREAO'",
+      "year": "2024",
+      "tag": "Single",
+      "note": "Otro release clave de la etapa que consolidó el proyecto.",
+      "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ae/f1/17/aef117e6-a847-fe41-0662-532e6d5fef7f/artwork.jpg/1200x1200bb.jpg"
+    },
+    {
+      "title": "RICOTA",
+      "year": "2025",
+      "tag": "Single",
+      "note": "Nuevo impulso para la etapa reciente del proyecto.",
+      "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/19/30/57/1930574c-c591-009e-cd3d-cf8877c0cf8c/artwork.jpg/1200x1200bb.jpg"
+    },
+    {
+      "title": "inDIRECTAS",
+      "year": "2025",
+      "tag": "Single",
+      "note": "Continuidad de la narrativa visual y social-first de ZALØ.",
+      "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/c6/45/05/c64505bc-122c-07ad-1897-b5525d4603ab/artwork.jpg/1200x1200bb.jpg"
+    },
+    {
+      "title": "PLAN B",
+      "year": "2025",
+      "tag": "Single",
+      "note": "Otro corte de la nueva tanda de releases.",
+      "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/4f/29/e7/4f29e778-5839-0cdf-9117-5d89e3f7f000/artwork.jpg/1200x1200bb.jpg"
+    },
+    {
+      "title": "PLOMO PA ÉL",
+      "year": "2026",
+      "tag": "Single",
+      "note": "Nuevo release dentro de la etapa más reciente del proyecto.",
+      "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/12/59/14/125914a0-d750-36db-1647-a4660e7c6182/artwork.jpg/1200x1200bb.jpg"
+    }
+  ]
+}

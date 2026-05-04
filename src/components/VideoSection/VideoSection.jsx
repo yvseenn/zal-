@@ -1,6 +1,6 @@
 import './VideoSection.css'
 
-// Latest videoclip section fed by a YouTube id stored in artistData.js.
+// Latest videoclip section fed by the JSON content files in src/content/.
 export function VideoSection({ latestVideo }) {
   return (
     <section className="section video">

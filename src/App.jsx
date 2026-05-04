@@ -9,21 +9,17 @@ import { TopBar } from './components/TopBar/TopBar.jsx'
 import { VideoSection } from './components/VideoSection/VideoSection.jsx'
 import { usePreviewAudio } from './hooks/usePreviewAudio.js'
 import { useRevealOnScroll } from './hooks/useRevealOnScroll.js'
-import { useSiteContent } from './hooks/useSiteContent.js'
-import { defaultSiteContent } from './data/artistData.js'
+import { siteContent } from './content/siteContent.js'
 
-// Central section router: the public page order can now change in Supabase
-// without having to rewrite the component tree by hand.
+// Central section router: the public page order comes from content JSON so the
+// admin CMS can reorder sections without touching React code.
 function renderPageSection(section, siteContent, isPlaying) {
   switch (section.sectionKey) {
     case 'hero':
       return (
         <HeroSection
-          appleMusicUrl={siteContent.appleMusicUrl}
-          facts={siteContent.facts}
-          instagramUrl={siteContent.instagramUrl}
+          content={siteContent}
           isPreviewActive={isPlaying}
-          spotifyUrl={siteContent.spotifyUrl}
         />
       )
     case 'profile':
@@ -42,11 +38,7 @@ function renderPageSection(section, siteContent, isPlaying) {
       return <VideoSection latestVideo={siteContent.latestVideo} />
     case 'closing':
       return (
-        <ClosingSection
-          appleMusicUrl={siteContent.appleMusicUrl}
-          instagramUrl={siteContent.instagramUrl}
-          spotifyUrl={siteContent.spotifyUrl}
-        />
+        <ClosingSection content={siteContent} />
       )
     default:
       return null
@@ -56,8 +48,6 @@ function renderPageSection(section, siteContent, isPlaying) {
 function App() {
   // Tracks scroll so the header and hero artwork can react to the page position.
   const [scrollValue, setScrollValue] = useState(0)
-  // This hook merges Supabase content with local fallback defaults.
-  const siteContent = useSiteContent()
 
   // Centralized preview control so header hover and hero visuals stay in sync.
   const { audioRef, isPlaying, playPreview, stopPreview } = usePreviewAudio({
@@ -106,8 +96,7 @@ function App() {
       }}
     >
       <TopBar
-        fallbackProfileImage={defaultSiteContent.instagramProfileImage}
-        instagramProfileImage={siteContent.instagramProfileImage}
+        content={siteContent}
         isPreviewActive={isPlaying}
         isScrolled={scrollValue > 24}
         onPreviewStart={playPreview}

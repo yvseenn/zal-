@@ -1,0 +1,161 @@
+backend:
+  name: git-gateway
+  branch: main
+
+publish_mode: editorial_workflow
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+locale: "es"
+
+collections:
+  - name: "site"
+    label: "Site"
+    files:
+      - name: "settings"
+        label: "Site Settings"
+        file: "src/content/site.json"
+        format: "json"
+        fields:
+          - { label: "Artist Name", name: "artistName", widget: "string" }
+          - { label: "Instagram Handle", name: "instagramHandle", widget: "string" }
+          - label: "Links"
+            name: "links"
+            widget: "object"
+            fields:
+              - { label: "Spotify URL", name: "spotifyUrl", widget: "string" }
+              - { label: "Apple Music URL", name: "appleMusicUrl", widget: "string" }
+              - { label: "Instagram URL", name: "instagramUrl", widget: "string" }
+          - label: "Images"
+            name: "images"
+            widget: "object"
+            fields:
+              - { label: "Instagram Profile Image URL", name: "instagramProfileImage", widget: "string" }
+          - label: "Hero Facts"
+            name: "facts"
+            widget: "list"
+            allow_add: true
+            field: { label: "Fact", name: "fact", widget: "string" }
+          - label: "Hover Preview"
+            name: "highlightPreview"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Preview URL", name: "previewUrl", widget: "string" }
+              - { label: "Start Time (seconds)", name: "startTime", widget: "number", value_type: "int", min: 0 }
+          - label: "Latest Video"
+            name: "latestVideo"
+            widget: "object"
+            fields:
+              - { label: "YouTube ID", name: "youtubeId", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Note", name: "note", widget: "text" }
+          - label: "Profile Cards"
+            name: "profileCards"
+            widget: "list"
+            allow_add: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Text", name: "text", widget: "text" }
+          - label: "Hero Copy"
+            name: "heroCopy"
+            widget: "object"
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Tagline", name: "tagline", widget: "string" }
+              - { label: "Lead", name: "lead", widget: "text" }
+              - label: "Badge"
+                name: "badge"
+                widget: "object"
+                fields:
+                  - { label: "Label", name: "label", widget: "string" }
+                  - { label: "Value", name: "value", widget: "string" }
+              - label: "Top Note"
+                name: "topNote"
+                widget: "object"
+                fields:
+                  - { label: "Label", name: "label", widget: "string" }
+                  - { label: "Value", name: "value", widget: "string" }
+              - label: "Bottom Note"
+                name: "bottomNote"
+                widget: "object"
+                fields:
+                  - { label: "Label", name: "label", widget: "string" }
+                  - { label: "Value", name: "value", widget: "string" }
+          - label: "Closing Copy"
+            name: "closingCopy"
+            widget: "object"
+            fields:
+              - { label: "Tag", name: "tag", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Body", name: "body", widget: "text" }
+          - label: "Header Copy"
+            name: "headerCopy"
+            widget: "object"
+            fields:
+              - { label: "Status (idle)", name: "statusIdle", widget: "string" }
+              - { label: "Status (playing)", name: "statusPlaying", widget: "string" }
+              - label: "Meta Tags"
+                name: "metaTags"
+                widget: "list"
+                allow_add: true
+                field: { label: "Tag", name: "tag", widget: "string" }
+
+  - name: "songs"
+    label: "Songs (Selección)"
+    files:
+      - name: "songs"
+        label: "Songs"
+        file: "src/content/songs.json"
+        format: "json"
+        fields:
+          - label: "Songs"
+            name: "songs"
+            widget: "list"
+            allow_add: true
+            summary: "{{fields.title}} ({{fields.year}})"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Year", name: "year", widget: "string" }
+              - { label: "Tag", name: "tag", widget: "string", default: "Single" }
+              - { label: "Note", name: "note", widget: "text" }
+              - { label: "Artwork URL", name: "artwork", widget: "string" }
+
+  - name: "timeline"
+    label: "Timeline"
+    files:
+      - name: "timeline"
+        label: "Timeline"
+        file: "src/content/timeline.json"
+        format: "json"
+        fields:
+          - label: "Items"
+            name: "items"
+            widget: "list"
+            allow_add: true
+            summary: "{{fields.year}} · {{fields.title}}"
+            fields:
+              - { label: "Year", name: "year", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Text", name: "text", widget: "text" }
+
+  - name: "layout"
+    label: "Layout (Secciones)"
+    files:
+      - name: "page-sections"
+        label: "Page Sections"
+        file: "src/content/pageSections.json"
+        format: "json"
+        fields:
+          - label: "Sections"
+            name: "sections"
+            widget: "list"
+            allow_add: true
+            summary: "{{fields.displayOrder}} · {{fields.sectionKey}}"
+            fields:
+              - { label: "Section Key", name: "sectionKey", widget: "select", options: ["hero", "profile", "timeline", "releases", "video", "closing"] }
+              - { label: "Display Order", name: "displayOrder", widget: "number", value_type: "int", min: 0 }
+              - { label: "Visible", name: "isVisible", widget: "boolean", default: true }
+              - { label: "Variant", name: "variant", widget: "string", required: false }
+              - { label: "Config", name: "config", widget: "object", required: false, collapsed: true, fields: [] }

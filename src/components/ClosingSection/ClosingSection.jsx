@@ -3,21 +3,18 @@ import { AppleMusicIcon, InstagramIcon, SpotifyIcon } from '../SocialIcons.jsx'
 
 // Closing CTA block for contact-style actions and external platform links.
 // Reuses the same button variants as the hero so both CTA rows stay consistent.
-export function ClosingSection({ appleMusicUrl, instagramUrl, spotifyUrl }) {
+export function ClosingSection({ content }) {
   return (
     <section className="section closing" data-reveal>
       <div className="closing__panel">
-        <p className="section-tag">Contacto</p>
-        <h2>Listo para ampliar en directo, social y colaboración.</h2>
-        <p>
-          Este portfolio está diseñado como una base clara para presentar a ZALØ
-          a promotores, creativos, marcas y prensa digital.
-        </p>
+        <p className="section-tag">{content.closingCopy.tag}</p>
+        <h2>{content.closingCopy.title}</h2>
+        <p>{content.closingCopy.body}</p>
 
         <div className="hero__actions">
           <a
             className="button button--spotify"
-            href={spotifyUrl}
+            href={content.spotifyUrl}
             target="_blank"
             rel="noreferrer"
           >
@@ -28,7 +25,7 @@ export function ClosingSection({ appleMusicUrl, instagramUrl, spotifyUrl }) {
           </a>
           <a
             className="button button--secondary button--apple"
-            href={appleMusicUrl}
+            href={content.appleMusicUrl}
             target="_blank"
             rel="noreferrer"
           >
@@ -39,7 +36,7 @@ export function ClosingSection({ appleMusicUrl, instagramUrl, spotifyUrl }) {
           </a>
           <a
             className="button button--secondary button--instagram"
-            href={instagramUrl}
+            href={content.instagramUrl}
             target="_blank"
             rel="noreferrer"
           >

@@ -4,31 +4,21 @@ import { AppleMusicIcon, InstagramIcon, SpotifyIcon } from '../SocialIcons.jsx'
 // Main landing block: core artist pitch on the left, animated stage on the right.
 // The three CTAs below intentionally map to platform-specific button variants
 // so the social links stay visually distinct without custom markup per page.
-export function HeroSection({
-  appleMusicUrl,
-  facts,
-  instagramUrl,
-  isPreviewActive,
-  spotifyUrl,
-}) {
+export function HeroSection({ content, isPreviewActive }) {
   return (
     <section className="hero section">
       <div className="hero__copy" data-reveal>
-        <p className="eyebrow">Portfolio / artista urbano español</p>
+        <p className="eyebrow">{content.heroCopy.eyebrow}</p>
         <h1 className="hero__title">
-          <span className="hero__title-main">ZALØ</span>
-          <span className="hero__title-subline">presencia local, estética global.</span>
+          <span className="hero__title-main">{content.artistName}</span>
+          <span className="hero__title-subline">{content.heroCopy.tagline}</span>
         </h1>
-        <p className="hero__lead">
-          Artista urbano de Madrid con un proyecto centrado en reggaeton,
-          melodía y una identidad visual pensada para impactar en digital,
-          escenario y colaboración creativa.
-        </p>
+        <p className="hero__lead">{content.heroCopy.lead}</p>
 
         <div className="hero__actions">
           <a
             className="button button--spotify"
-            href={spotifyUrl}
+            href={content.spotifyUrl}
             target="_blank"
             rel="noreferrer"
           >
@@ -39,7 +29,7 @@ export function HeroSection({
           </a>
           <a
             className="button button--secondary button--apple"
-            href={appleMusicUrl}
+            href={content.appleMusicUrl}
             target="_blank"
             rel="noreferrer"
           >
@@ -50,7 +40,7 @@ export function HeroSection({
           </a>
           <a
             className="button button--secondary button--instagram"
-            href={instagramUrl}
+            href={content.instagramUrl}
             target="_blank"
             rel="noreferrer"
           >
@@ -62,8 +52,7 @@ export function HeroSection({
         </div>
 
         <ul className="fact-list">
-          {/* Facts are data-driven so they can be edited from artistData.js only. */}
-          {facts.map((fact) => (
+          {content.facts.map((fact) => (
             <li key={fact}>{fact}</li>
           ))}
         </ul>
@@ -78,18 +67,18 @@ export function HeroSection({
           <img src="/hero-vinyl.svg" alt="" aria-hidden="true" />
         </div>
         <div className="hero__badge">
-          <span>CV musical</span>
-          <strong>2024-2025</strong>
+          <span>{content.heroCopy.badge.label}</span>
+          <strong>{content.heroCopy.badge.value}</strong>
         </div>
         <div className="hero__note hero__note--top">
-          <span>Highlights</span>
-          <strong>DarkSide / MI SELLO / RICOTA</strong>
+          <span>{content.heroCopy.topNote.label}</span>
+          <strong>{content.heroCopy.topNote.value}</strong>
         </div>
         <div className="hero__note hero__note--bottom">
-          <span>Interaction</span>
-          <strong>hover en el avatar para activar DarkSide</strong>
+          <span>{content.heroCopy.bottomNote.label}</span>
+          <strong>{content.heroCopy.bottomNote.value}</strong>
         </div>
-        <div className="hero__title-shadow">ZALØ</div>
+        <div className="hero__title-shadow">{content.artistName}</div>
       </div>
     </section>
   )

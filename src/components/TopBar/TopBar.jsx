@@ -3,8 +3,7 @@ import './TopBar.css'
 // Floating navigation surface with the profile-driven preview trigger.
 // The image has a fallback because third-party avatar URLs can expire or rate-limit.
 export function TopBar({
-  fallbackProfileImage,
-  instagramProfileImage,
+  content,
   isPreviewActive,
   isScrolled,
   onPreviewStart,
@@ -26,31 +25,32 @@ export function TopBar({
           >
             <img
               className="topbar__avatar"
-              src={instagramProfileImage || fallbackProfileImage}
-              alt="Foto de perfil de ZALØ en Instagram"
+              src={content.instagramProfileImage}
+              alt={`Foto de perfil de ${content.artistName} en Instagram`}
               onError={(event) => {
                 event.currentTarget.onerror = null
-                event.currentTarget.src = fallbackProfileImage
+                // Local fallback so the header never renders broken if the CDN blocks hotlinking.
+                event.currentTarget.src = '/zalo-tab-logo.svg'
               }}
             />
           </button>
 
           <div className="topbar__identity">
             <div className="topbar__brand-row">
-              <div className="topbar__brand">ZALØ</div>
+              <div className="topbar__brand">{content.artistName}</div>
               <span className={`topbar__status${isPreviewActive ? ' is-active' : ''}`}>
-                {isPreviewActive ? 'DarkSide on' : 'Hover to play'}
+                {isPreviewActive ? content.headerCopy.statusPlaying : content.headerCopy.statusIdle}
               </span>
             </div>
-            <p className="topbar__handle">@zalo_wav</p>
+            <p className="topbar__handle">{content.instagramHandle}</p>
           </div>
         </div>
 
         <div className="topbar__meta">
           {/* Short tags keep the header informative without turning it into navigation. */}
-          <span>Madrid</span>
-          <span>Urbano</span>
-          <span>Reggaeton</span>
+          {content.headerCopy.metaTags.map((tag) => (
+            <span key={tag}>{tag}</span>
+          ))}
         </div>
       </header>
     </div>
