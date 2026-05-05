@@ -16,33 +16,38 @@
 }
 
 .releases__grid {
+  /* Horizontal track with snap points for each release card. */
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: minmax(260px, 340px);
-  gap: 16px;
+  grid-auto-columns: minmax(320px, 420px);
+  gap: 18px;
   margin-top: 28px;
   overflow-x: auto;
-  padding-bottom: 10px;
+  overflow-y: visible;
+  padding: 12px 6px 18px;
   scroll-snap-type: x mandatory;
+  scroll-padding-left: 24px;
+  scroll-padding-right: 24px;
   -webkit-overflow-scrolling: touch;
 }
 
 .release-card {
-  scroll-snap-align: start;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  min-height: 250px;
-  padding: 22px;
+  /* Vertical card: artwork first, then copy. */
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  min-height: auto;
+  padding: 18px 18px 20px;
   border: 1px solid var(--border);
   background: var(--surface);
   border-radius: 30px;
   box-shadow: var(--panel-shadow);
   color: inherit;
   text-decoration: none;
-  opacity: 0.74;
-  transform: translateY(0) scale(0.985);
-  filter: saturate(0.92) brightness(0.95);
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: none;
+  scroll-snap-align: center;
   transition:
     transform var(--motion-base) ease,
     border-color var(--motion-base) ease,
@@ -54,29 +59,28 @@
 
 .release-card:hover {
   transform: translateY(-8px);
-  border-color: rgba(143, 230, 255, 0.54);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.22);
+  border-color: rgba(0, 0, 0, 0.22);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.14);
   opacity: 0.98;
   filter: saturate(1) brightness(1);
 }
 
 .release-card.is-spotlight {
-  opacity: 1;
+  /* Spotlight effect: centered card feels "in focus". */
   transform: translateY(-10px) scale(1.02);
-  border-color: rgba(143, 230, 255, 0.64);
+  border-color: rgba(0, 0, 0, 0.24);
   box-shadow:
-    0 0 0 1px rgba(143, 230, 255, 0.46),
-    0 34px 74px rgba(58, 164, 214, 0.26);
-  filter: saturate(1.04) brightness(1.02);
+    0 0 0 1px rgba(0, 0, 0, 0.08),
+    0 36px 80px rgba(0, 0, 0, 0.14);
 }
 
 .release-card.is-highlighted {
-  border-color: rgba(143, 230, 255, 0.64);
+  border-color: rgba(0, 0, 0, 0.26);
   box-shadow:
-    0 0 0 1px rgba(143, 230, 255, 0.54),
-    0 30px 70px rgba(58, 164, 214, 0.28);
+    0 0 0 1px rgba(0, 0, 0, 0.12),
+    0 30px 70px rgba(0, 0, 0, 0.14);
   opacity: 1;
-  filter: saturate(1.06) brightness(1.02);
+  filter: none;
 }
 
 .release-card__art {
@@ -149,13 +153,13 @@
 
 .release-card__meta {
   display: flex;
-  justify-content: space-between;
-  gap: 12px;
+  justify-content: flex-start;
+  gap: 10px;
 }
 
 .release-card h3 {
-  margin: 18px 0 10px;
-  font-size: 1.34rem;
+  margin: 4px 0 6px;
+  font-size: 1.6rem;
   line-height: 1.05;
   letter-spacing: -0.04em;
 }
@@ -166,8 +170,8 @@
 
 .release-card.is-highlighted .release-card__art {
   box-shadow:
-    inset 0 0 0 1px rgba(143, 230, 255, 0.26),
-    0 20px 48px rgba(47, 140, 193, 0.18);
+    inset 0 0 0 1px rgba(0, 0, 0, 0.08),
+    0 20px 48px rgba(0, 0, 0, 0.12);
 }
 
 .release-card.is-highlighted .release-card__art::before {
@@ -209,7 +213,7 @@
 
 @media (max-width: 1080px) {
   .releases__grid {
-    grid-auto-columns: minmax(240px, 320px);
+    grid-auto-columns: minmax(300px, 380px);
   }
 }
 
@@ -219,7 +223,14 @@
   }
 
   .releases__grid {
-    grid-auto-columns: minmax(240px, 82vw);
+    grid-auto-columns: minmax(270px, 320px);
+    gap: 14px;
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+
+  .release-card {
+    padding: 16px;
   }
 }
 
