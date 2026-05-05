@@ -38,6 +38,11 @@
     "eyebrow": "Portfolio / artista urbano español",
     "tagline": "presencia local, estética global.",
     "lead": "Artista urbano de Madrid con un proyecto centrado en reggaeton, melodía y una identidad visual pensada para impactar en digital, escenario y colaboración creativa.",
+    "featuredRelease": {
+      "label": "Nuevo EP",
+      "title": "NIMBUS",
+      "url": "https://open.spotify.com/album/7I2qNelrbetpeFZjk9QtMM"
+    },
     "badge": { "label": "CV musical", "value": "2024-2025" },
     "topNote": { "label": "Highlights", "value": "DarkSide / MI SELLO / RICOTA" },
     "bottomNote": { "label": "Interaction", "value": "hover en el avatar para activar DarkSide" }
@@ -53,4 +58,3 @@
     "metaTags": ["Madrid", "Urbano", "Reggaeton"]
   }
 }
-

@@ -65,6 +65,14 @@ collections:
               - { label: "Eyebrow", name: "eyebrow", widget: "string" }
               - { label: "Tagline", name: "tagline", widget: "string" }
               - { label: "Lead", name: "lead", widget: "text" }
+              - label: "Featured Release (top pill)"
+                name: "featuredRelease"
+                widget: "object"
+                required: false
+                fields:
+                  - { label: "Label", name: "label", widget: "string", required: false }
+                  - { label: "Title", name: "title", widget: "string", required: false }
+                  - { label: "URL", name: "url", widget: "string", required: false }
               - label: "Badge"
                 name: "badge"
                 widget: "object"
@@ -121,6 +129,7 @@ collections:
               - { label: "Tag", name: "tag", widget: "string", default: "Single" }
               - { label: "Note", name: "note", widget: "text" }
               - { label: "Artwork URL", name: "artwork", widget: "string" }
+              - { label: "Link URL (optional)", name: "url", widget: "string", required: false }
 
   - name: "timeline"
     label: "Timeline"

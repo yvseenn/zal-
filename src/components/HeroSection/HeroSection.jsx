@@ -5,9 +5,22 @@ import { AppleMusicIcon, InstagramIcon, SpotifyIcon } from '../SocialIcons.jsx'
 // The three CTAs below intentionally map to platform-specific button variants
 // so the social links stay visually distinct without custom markup per page.
 export function HeroSection({ content, isPreviewActive }) {
+  const featuredRelease = content.heroCopy?.featuredRelease
+
   return (
     <section className="hero section">
       <div className="hero__copy" data-reveal>
+        {featuredRelease?.url ? (
+          <a
+            className="hero__featured"
+            href={featuredRelease.url}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <span className="hero__featured-label">{featuredRelease.label || 'Nuevo'}</span>
+            <span className="hero__featured-title">{featuredRelease.title || ''}</span>
+          </a>
+        ) : null}
         <p className="eyebrow">{content.heroCopy.eyebrow}</p>
         <h1 className="hero__title">
           <span className="hero__title-main">{content.artistName}</span>

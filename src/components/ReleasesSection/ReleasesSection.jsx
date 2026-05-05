@@ -14,11 +14,16 @@ export function ReleasesSection({ highlightTitle, isPreviewActive, releases }) {
           // The highlighted release mirrors the audio currently attached to the avatar.
           const isHighlighted = isPreviewActive && release.title === highlightTitle
 
+          const CardTag = release.url ? 'a' : 'article'
+
           return (
-            <article
+            <CardTag
               className={`release-card${isHighlighted ? ' is-highlighted' : ''}`}
               key={release.title}
               data-reveal
+              href={release.url || undefined}
+              target={release.url ? '_blank' : undefined}
+              rel={release.url ? 'noreferrer' : undefined}
               style={{
                 transitionDelay: `${index * 90}ms`,
                 '--release-delay': `${index * 0.45}s`,
@@ -45,7 +50,7 @@ export function ReleasesSection({ highlightTitle, isPreviewActive, releases }) {
               ) : null}
               <h3>{release.title}</h3>
               <p>{release.note}</p>
-            </article>
+            </CardTag>
           )
         })}
       </div>
