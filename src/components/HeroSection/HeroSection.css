@@ -18,12 +18,12 @@
 .hero__featured {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
   padding: 12px 16px;
   margin: 0 0 16px;
-  border-radius: 999px;
+  border-radius: 28px;
   border: 1px solid rgba(255, 255, 255, 0.14);
-  background: rgba(8, 11, 13, 0.62);
+  background: var(--surface);
   backdrop-filter: blur(18px);
   box-shadow: var(--panel-shadow);
   color: var(--text-strong);
@@ -32,14 +32,44 @@
 }
 
 .hero__featured-art {
-  width: 44px;
-  height: 44px;
-  border-radius: 14px;
+  position: relative;
+  width: 92px;
+  height: 92px;
+  border-radius: 22px;
   overflow: hidden;
   flex: 0 0 auto;
   border: 1px solid rgba(255, 255, 255, 0.14);
   background: rgba(255, 255, 255, 0.06);
   box-shadow: 0 12px 26px rgba(0, 0, 0, 0.22);
+  isolation: isolate;
+}
+
+.hero__featured-art::before {
+  content: '';
+  position: absolute;
+  inset: -18% auto -18% -46%;
+  width: 46%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(220, 248, 255, 0.22) 48%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-18deg) translateX(-180%);
+  z-index: 2;
+  pointer-events: none;
+  animation: releaseShimmer 6.2s ease-in-out infinite;
+}
+
+.hero__featured-art::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 22% 16%, rgba(224, 249, 255, 0.18), transparent 34%),
+    linear-gradient(180deg, rgba(4, 10, 15, 0) 42%, rgba(4, 10, 15, 0.22) 100%);
+  z-index: 1;
+  pointer-events: none;
 }
 
 .hero__featured-art img {
@@ -47,6 +77,7 @@
   height: 100%;
   display: block;
   object-fit: cover;
+  z-index: 0;
 }
 
 .hero__featured:hover {
@@ -55,6 +86,7 @@
 }
 
 .hero__featured-label {
+  display: block;
   font-size: 0.7rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -62,8 +94,23 @@
 }
 
 .hero__featured-title {
+  display: block;
   font-family: var(--display);
+  font-size: 1.65rem;
+  line-height: 1;
   letter-spacing: -0.04em;
+}
+
+.hero__featured-sub {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.85rem;
+  color: var(--text);
+}
+
+.hero__featured-meta {
+  display: block;
+  min-width: 0;
 }
 
 .eyebrow {

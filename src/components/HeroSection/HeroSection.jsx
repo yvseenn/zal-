@@ -19,11 +19,16 @@ export function HeroSection({ content, isPreviewActive }) {
           >
             {featuredRelease.artwork ? (
               <span className="hero__featured-art" aria-hidden="true">
-                <img src={featuredRelease.artwork} alt="" />
+                <img src={featuredRelease.artwork} alt="" loading="eager" />
               </span>
             ) : null}
-            <span className="hero__featured-label">{featuredRelease.label || 'Nuevo'}</span>
-            <span className="hero__featured-title">{featuredRelease.title || ''}</span>
+            <span className="hero__featured-meta">
+              <span className="hero__featured-label">
+                {featuredRelease.label || 'Nuevo'}
+              </span>
+              <span className="hero__featured-title">{featuredRelease.title || ''}</span>
+              <span className="hero__featured-sub">Spotify</span>
+            </span>
           </a>
         ) : null}
         <p className="eyebrow">{content.heroCopy.eyebrow}</p>
