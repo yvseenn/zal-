@@ -17,6 +17,11 @@ export function HeroSection({ content, isPreviewActive }) {
             target="_blank"
             rel="noreferrer"
           >
+            {featuredRelease.artwork ? (
+              <span className="hero__featured-art" aria-hidden="true">
+                <img src={featuredRelease.artwork} alt="" />
+              </span>
+            ) : null}
             <span className="hero__featured-label">{featuredRelease.label || 'Nuevo'}</span>
             <span className="hero__featured-title">{featuredRelease.title || ''}</span>
           </a>

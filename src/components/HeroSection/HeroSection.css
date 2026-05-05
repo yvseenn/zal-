@@ -31,6 +31,24 @@
   transition: transform var(--motion-base) ease, border-color var(--motion-base) ease;
 }
 
+.hero__featured-art {
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  overflow: hidden;
+  flex: 0 0 auto;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.22);
+}
+
+.hero__featured-art img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
 .hero__featured:hover {
   transform: translateY(-2px);
   border-color: rgba(143, 230, 255, 0.58);
