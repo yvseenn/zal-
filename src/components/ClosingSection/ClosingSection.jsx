@@ -7,7 +7,7 @@ export function ClosingSection({ content }) {
   const booking = content.closingCopy?.booking
 
   return (
-    <section className="section closing" data-reveal>
+    <section className="section closing" id="contact" data-reveal>
       <div className="closing__panel">
         <p className="section-tag">{content.closingCopy.tag}</p>
         <h2>{content.closingCopy.title}</h2>

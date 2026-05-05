@@ -77,6 +77,20 @@ collections:
             fields:
               - { label: "Title", name: "title", widget: "string" }
               - { label: "Text", name: "text", widget: "text" }
+          - label: "Bio"
+            name: "bio"
+            widget: "object"
+            fields:
+              - { label: "Kicker", name: "kicker", widget: "string" }
+              - { label: "Headline", name: "headline", widget: "string" }
+              - { label: "Body", name: "body", widget: "text" }
+              - { label: "Highlights Title", name: "highlightsTitle", widget: "string", required: false }
+              - label: "Highlights"
+                name: "highlights"
+                widget: "list"
+                allow_add: true
+                required: false
+                field: { label: "Item", name: "item", widget: "string" }
           - label: "Hero Copy"
             name: "heroCopy"
             widget: "object"
@@ -192,7 +206,25 @@ collections:
             allow_add: true
             summary: "{{fields.sectionKey}}"
             fields:
-              - { label: "Section Key", name: "sectionKey", widget: "select", options: ["hero", "profile", "timeline", "releases", "video", "closing"] }
+              - { label: "Section Key", name: "sectionKey", widget: "select", options: ["intro", "bio", "works", "gallery", "contact"] }
               - { label: "Visible", name: "isVisible", widget: "boolean", default: true }
               - { label: "Variant", name: "variant", widget: "string", required: false }
               # Config is intentionally omitted from the editor. Keep it in JSON as `{}` for future use.
+
+  - name: "gallery"
+    label: "Gallery"
+    files:
+      - name: "gallery"
+        label: "Gallery"
+        file: "src/content/gallery.json"
+        format: "json"
+        fields:
+          - label: "Items"
+            name: "items"
+            widget: "list"
+            allow_add: true
+            summary: "{{fields.caption}}"
+            fields:
+              - { label: "Image", name: "image", widget: "image", choose_url: true }
+              - { label: "Alt text", name: "alt", widget: "string", required: false }
+              - { label: "Caption", name: "caption", widget: "string", required: false }

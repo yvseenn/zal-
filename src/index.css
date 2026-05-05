@@ -8,8 +8,9 @@
   font-weight: 400;
   color: #f2f6f8;
   background:
-    radial-gradient(circle at top, rgba(137, 238, 218, 0.18), transparent 28%),
-    linear-gradient(180deg, #030405 0%, #070a0d 46%, #020304 100%);
+    radial-gradient(circle at 18% 12%, rgba(137, 238, 218, 0.14), transparent 34%),
+    radial-gradient(circle at 82% 18%, rgba(125, 195, 255, 0.08), transparent 36%),
+    linear-gradient(180deg, #040607 0%, #060a0d 56%, #030405 100%);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -67,9 +68,9 @@ body::before {
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(circle at 12% 20%, rgba(125, 232, 211, 0.18), transparent 24%),
-    radial-gradient(circle at 88% 18%, rgba(109, 167, 196, 0.14), transparent 20%),
-    radial-gradient(circle at 50% 88%, rgba(196, 245, 232, 0.12), transparent 24%);
+    radial-gradient(circle at 12% 20%, rgba(125, 232, 211, 0.14), transparent 26%),
+    radial-gradient(circle at 88% 18%, rgba(109, 167, 196, 0.1), transparent 22%),
+    radial-gradient(circle at 50% 88%, rgba(196, 245, 232, 0.1), transparent 26%);
   z-index: -1;
 }
 

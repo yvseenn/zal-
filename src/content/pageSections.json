@@ -1,10 +1,9 @@
 {
   "sections": [
-    { "sectionKey": "hero", "isVisible": true, "variant": "default", "config": {} },
-    { "sectionKey": "profile", "isVisible": true, "variant": "default", "config": {} },
-    { "sectionKey": "timeline", "isVisible": true, "variant": "default", "config": {} },
-    { "sectionKey": "releases", "isVisible": true, "variant": "default", "config": {} },
-    { "sectionKey": "video", "isVisible": true, "variant": "default", "config": {} },
-    { "sectionKey": "closing", "isVisible": true, "variant": "default", "config": {} }
+    { "sectionKey": "intro", "isVisible": true, "variant": "default", "config": {} },
+    { "sectionKey": "bio", "isVisible": true, "variant": "default", "config": {} },
+    { "sectionKey": "works", "isVisible": true, "variant": "default", "config": {} },
+    { "sectionKey": "gallery", "isVisible": true, "variant": "default", "config": {} },
+    { "sectionKey": "contact", "isVisible": true, "variant": "default", "config": {} }
   ]
 }

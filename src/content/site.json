@@ -34,6 +34,13 @@
       "text": "Portfolio preparado para salas, festivales, colaboraciones creativas, prensa y brand-facing decks."
     }
   ],
+  "bio": {
+    "kicker": "BIOGRAPHY",
+    "headline": "Hey. Soy ZALØ, artista urbano de Madrid.",
+    "body": "Proyecto centrado en reggaeton y urbano melódico, con una identidad visual social-first y foco en singles. Este espacio funciona como press kit: bio, música, visuales y contacto en un solo sitio.",
+    "highlightsTitle": "Highlights",
+    "highlights": ["Nuevo EP: NIMBUS (2026)", "Madrid", "Reggaeton / Urbano", "Videoclip: DarkSide"]
+  },
   "heroCopy": {
     "eyebrow": "Portfolio / artista urbano español",
     "tagline": "presencia local, estética global.",
@@ -62,6 +69,12 @@
   "headerCopy": {
     "statusIdle": "Hover to play",
     "statusPlaying": "DarkSide on",
-    "metaTags": ["Madrid", "Urbano", "Reggaeton"]
+    "metaTags": ["Madrid", "Urbano", "Reggaeton"],
+    "nav": [
+      { "label": "BIO", "href": "#bio" },
+      { "label": "WORKS", "href": "#works" },
+      { "label": "GALLERY", "href": "#gallery" },
+      { "label": "CONTACT", "href": "#contact" }
+    ]
   }
 }

@@ -8,7 +8,7 @@ export function HeroSection({ content, isPreviewActive }) {
   const featuredRelease = content.heroCopy?.featuredRelease
 
   return (
-    <section className="hero section">
+    <section className="hero section" id="intro">
       <div className="hero__copy" data-reveal>
         {featuredRelease?.url ? (
           <a

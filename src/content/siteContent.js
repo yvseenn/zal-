@@ -3,6 +3,7 @@ import pageSections from './pageSections.json'
 import releases from './songs.json'
 import timeline from './timeline.json'
 import theme from './theme.json'
+import gallery from './gallery.json'
 
 // Single source of truth for the public site.
 // Decap CMS edits the JSON files above, and the React app imports this module.
@@ -18,10 +19,12 @@ export const siteContent = {
   pageSections: pageSections.sections,
   releases: releases.songs,
   timeline: timeline.items,
+  gallery: gallery.items,
   theme,
   heroCopy: site.heroCopy,
   closingCopy: site.closingCopy,
   headerCopy: site.headerCopy,
+  bio: site.bio,
   artistName: site.artistName,
   instagramHandle: site.instagramHandle
 }

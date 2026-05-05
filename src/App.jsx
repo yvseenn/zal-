@@ -2,11 +2,11 @@ import { Fragment, useEffect, useState } from 'react'
 import './styles/app-shell.css'
 import { ClosingSection } from './components/ClosingSection/ClosingSection.jsx'
 import { HeroSection } from './components/HeroSection/HeroSection.jsx'
-import { ProfileSection } from './components/ProfileSection/ProfileSection.jsx'
 import { ReleasesSection } from './components/ReleasesSection/ReleasesSection.jsx'
-import { TimelineSection } from './components/TimelineSection/TimelineSection.jsx'
 import { TopBar } from './components/TopBar/TopBar.jsx'
 import { VideoSection } from './components/VideoSection/VideoSection.jsx'
+import { BioSection } from './components/BioSection/BioSection.jsx'
+import { GallerySection } from './components/GallerySection/GallerySection.jsx'
 import { usePreviewAudio } from './hooks/usePreviewAudio.js'
 import { useRevealOnScroll } from './hooks/useRevealOnScroll.js'
 import { siteContent } from './content/siteContent.js'
@@ -15,18 +15,16 @@ import { siteContent } from './content/siteContent.js'
 // admin CMS can reorder sections without touching React code.
 function renderPageSection(section, siteContent, isPlaying) {
   switch (section.sectionKey) {
-    case 'hero':
+    case 'intro':
       return (
         <HeroSection
           content={siteContent}
           isPreviewActive={isPlaying}
         />
       )
-    case 'profile':
-      return <ProfileSection profileCards={siteContent.profileCards} />
-    case 'timeline':
-      return <TimelineSection timeline={siteContent.timeline} />
-    case 'releases':
+    case 'bio':
+      return <BioSection bio={siteContent.bio} />
+    case 'works':
       return (
         <ReleasesSection
           highlightTitle={siteContent.highlightPreview.title}
@@ -34,9 +32,9 @@ function renderPageSection(section, siteContent, isPlaying) {
           releases={siteContent.releases}
         />
       )
-    case 'video':
-      return <VideoSection latestVideo={siteContent.latestVideo} />
-    case 'closing':
+    case 'gallery':
+      return <GallerySection gallery={siteContent.gallery} latestVideo={siteContent.latestVideo} />
+    case 'contact':
       return (
         <ClosingSection content={siteContent} />
       )

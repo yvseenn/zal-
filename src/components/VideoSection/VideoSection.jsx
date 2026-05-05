@@ -3,7 +3,7 @@ import './VideoSection.css'
 // Latest videoclip section fed by the JSON content files in src/content/.
 export function VideoSection({ latestVideo }) {
   return (
-    <section className="section video">
+    <section className="section video" id="video">
       <div className="video__copy" data-reveal>
         <p className="section-tag">Videoclip</p>
         <h2>{latestVideo.title}</h2>

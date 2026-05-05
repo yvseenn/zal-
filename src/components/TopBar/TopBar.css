@@ -158,12 +158,35 @@
   border-color: transparent;
 }
 
-.topbar__meta {
+.topbar__nav {
   display: flex;
-  gap: 8px;
+  gap: 10px;
   flex-wrap: wrap;
   justify-content: flex-end;
+  align-items: center;
   transition: gap var(--motion-base) ease;
+}
+
+.topbar__nav-link {
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text-soft);
+  font-size: 0.66rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition:
+    transform var(--motion-base) ease,
+    border-color var(--motion-base) ease,
+    color var(--motion-base) ease;
+}
+
+.topbar__nav-link:hover {
+  transform: translateY(-1px);
+  border-color: rgba(143, 230, 255, 0.28);
+  color: var(--text-strong);
 }
 
 .topbar.is-scrolled .topbar__profile {
@@ -200,8 +223,8 @@
   letter-spacing: 0.11em;
 }
 
-.topbar.is-scrolled .topbar__meta {
-  gap: 6px;
+.topbar.is-scrolled .topbar__nav {
+  gap: 8px;
 }
 
 @keyframes topbarEntrance {

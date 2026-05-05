@@ -46,12 +46,13 @@ export function TopBar({
           </div>
         </div>
 
-        <div className="topbar__meta">
-          {/* Short tags keep the header informative without turning it into navigation. */}
-          {content.headerCopy.metaTags.map((tag) => (
-            <span key={tag}>{tag}</span>
+        <nav className="topbar__nav" aria-label="Primary">
+          {content.headerCopy.nav?.map((item) => (
+            <a key={item.href} href={item.href} className="topbar__nav-link">
+              {item.label}
+            </a>
           ))}
-        </div>
+        </nav>
       </header>
     </div>
   )

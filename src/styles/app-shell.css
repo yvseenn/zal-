@@ -17,6 +17,11 @@
   margin: 0 auto;
 }
 
+/* Fixed header needs an anchor offset so section jumps land correctly. */
+.section[id] {
+  scroll-margin-top: 130px;
+}
+
 /* Shared badge styling reused by multiple sections to keep the UI coherent. */
 .topbar__meta span,
 .fact-list li,

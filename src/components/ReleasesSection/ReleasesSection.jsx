@@ -57,10 +57,10 @@ export function ReleasesSection({ highlightTitle, isPreviewActive, releases }) {
   }, [releaseTitles])
 
   return (
-    <section className="section releases">
+    <section className="section releases" id="works">
       <div className="releases__intro" data-reveal>
-        <p className="section-tag">Selección</p>
-        <h2>Singles que definen la propuesta.</h2>
+        <p className="section-tag">Works</p>
+        <h2>Selección</h2>
       </div>
 
       <div className="releases__grid" ref={gridRef}>
