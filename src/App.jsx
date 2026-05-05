@@ -80,11 +80,8 @@ function App() {
 
   const heroShift = Math.min(scrollValue * 0.18, 120)
   const glowShift = Math.min(scrollValue * 0.12, 90)
-  // The live layout comes from pageSections, so drag-and-drop admin work can
-  // eventually reorder the page without touching this component again.
-  const orderedSections = [...siteContent.pageSections]
-    .filter((section) => section.isVisible)
-    .sort((left, right) => left.displayOrder - right.displayOrder)
+  const theme = siteContent.theme || {}
+  const orderedSections = siteContent.pageSections.filter((section) => section.isVisible)
 
   return (
     <div
@@ -93,6 +90,16 @@ function App() {
         // CSS variables keep parallax tuning in CSS while the values stay in React.
         '--hero-shift': `${heroShift}px`,
         '--glow-shift': `${glowShift}px`,
+        '--theme-accent': theme.accent,
+        '--theme-accent-strong': theme.accentStrong,
+        '--theme-text-strong': theme.textStrong,
+        '--theme-text': theme.text,
+        '--theme-text-soft': theme.textSoft,
+        '--theme-text-dim': theme.textDim,
+        '--theme-border': theme.border,
+        '--theme-border-strong': theme.borderStrong,
+        '--theme-surface-tint': theme.surfaceTint,
+        '--theme-surface-highlight': theme.surfaceHighlight,
       }}
     >
       <TopBar

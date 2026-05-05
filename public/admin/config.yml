@@ -10,6 +10,25 @@ public_folder: "/uploads"
 locale: "es"
 
 collections:
+  - name: "theme"
+    label: "Theme"
+    files:
+      - name: "theme"
+        label: "Theme Colors"
+        file: "src/content/theme.json"
+        format: "json"
+        fields:
+          - { label: "Accent", name: "accent", widget: "color", allowInput: true }
+          - { label: "Accent Strong", name: "accentStrong", widget: "color", allowInput: true }
+          - { label: "Text Strong", name: "textStrong", widget: "color", allowInput: true }
+          - { label: "Text (rgba allowed)", name: "text", widget: "string" }
+          - { label: "Text Soft (rgba allowed)", name: "textSoft", widget: "string" }
+          - { label: "Text Dim (rgba allowed)", name: "textDim", widget: "string" }
+          - { label: "Border (rgba allowed)", name: "border", widget: "string" }
+          - { label: "Border Strong (rgba allowed)", name: "borderStrong", widget: "string" }
+          - { label: "Surface Tint (rgba allowed)", name: "surfaceTint", widget: "string" }
+          - { label: "Surface Highlight (rgba allowed)", name: "surfaceHighlight", widget: "string" }
+
   - name: "site"
     label: "Site"
     files:
@@ -31,7 +50,7 @@ collections:
             name: "images"
             widget: "object"
             fields:
-              - { label: "Instagram Profile Image URL", name: "instagramProfileImage", widget: "string" }
+              - { label: "Instagram Profile Image", name: "instagramProfileImage", widget: "image", choose_url: true, required: false }
           - label: "Hero Facts"
             name: "facts"
             widget: "list"
@@ -72,7 +91,7 @@ collections:
                 fields:
                   - { label: "Label", name: "label", widget: "string", required: false }
                   - { label: "Title", name: "title", widget: "string", required: false }
-                  - { label: "Artwork URL", name: "artwork", widget: "string", required: false }
+                  - { label: "Artwork", name: "artwork", widget: "image", choose_url: true, required: false }
                   - { label: "URL", name: "url", widget: "string", required: false }
               - label: "Badge"
                 name: "badge"
@@ -129,7 +148,7 @@ collections:
               - { label: "Year", name: "year", widget: "string" }
               - { label: "Tag", name: "tag", widget: "string", default: "Single" }
               - { label: "Note", name: "note", widget: "text" }
-              - { label: "Artwork URL", name: "artwork", widget: "string" }
+              - { label: "Artwork", name: "artwork", widget: "image", choose_url: true }
               - { label: "Link URL (optional)", name: "url", widget: "string", required: false }
 
   - name: "timeline"
@@ -162,10 +181,9 @@ collections:
             name: "sections"
             widget: "list"
             allow_add: true
-            summary: "{{fields.displayOrder}} · {{fields.sectionKey}}"
+            summary: "{{fields.sectionKey}}"
             fields:
               - { label: "Section Key", name: "sectionKey", widget: "select", options: ["hero", "profile", "timeline", "releases", "video", "closing"] }
-              - { label: "Display Order", name: "displayOrder", widget: "number", value_type: "int", min: 0 }
               - { label: "Visible", name: "isVisible", widget: "boolean", default: true }
               - { label: "Variant", name: "variant", widget: "string", required: false }
               # Config is intentionally omitted from the editor. Keep it in JSON as `{}` for future use.
