@@ -118,6 +118,15 @@ collections:
               - { label: "Tag", name: "tag", widget: "string" }
               - { label: "Title", name: "title", widget: "string" }
               - { label: "Body", name: "body", widget: "text" }
+              - label: "Booking"
+                name: "booking"
+                widget: "object"
+                required: false
+                fields:
+                  - { label: "Email", name: "email", widget: "string", required: false }
+                  - { label: "Phone", name: "phone", widget: "string", required: false }
+                  - { label: "Location", name: "location", widget: "string", required: false }
+                  - { label: "Press Kit URL", name: "pressKitUrl", widget: "string", required: false }
           - label: "Header Copy"
             name: "headerCopy"
             widget: "object"

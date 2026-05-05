@@ -51,7 +51,13 @@
   "closingCopy": {
     "tag": "Contacto",
     "title": "Listo para ampliar en directo, social y colaboración.",
-    "body": "Este portfolio está diseñado como una base clara para presentar a ZALØ a promotores, creativos, marcas y prensa digital."
+    "body": "Este portfolio está diseñado como una base clara para presentar a ZALØ a promotores, creativos, marcas y prensa digital.",
+    "booking": {
+      "email": "booking@zalo.com",
+      "phone": "",
+      "location": "Madrid, España",
+      "pressKitUrl": ""
+    }
   },
   "headerCopy": {
     "statusIdle": "Hover to play",

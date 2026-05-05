@@ -17,12 +17,18 @@
 
 .releases__grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(260px, 340px);
   gap: 16px;
   margin-top: 28px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
 }
 
 .release-card {
+  scroll-snap-align: start;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -184,7 +190,7 @@
 
 @media (max-width: 1080px) {
   .releases__grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-columns: minmax(240px, 320px);
   }
 }
 
@@ -194,7 +200,7 @@
   }
 
   .releases__grid {
-    grid-template-columns: 1fr;
+    grid-auto-columns: minmax(240px, 82vw);
   }
 }
 
