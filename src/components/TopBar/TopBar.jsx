@@ -8,7 +8,6 @@ export function TopBar({
   isScrolled,
   onPreviewStart,
   onPreviewStop,
-  onNavigate,
 }) {
   return (
     <div className={`topbar-shell${isScrolled ? ' is-scrolled' : ''}`}>
@@ -49,16 +48,7 @@ export function TopBar({
 
         <nav className="topbar__nav" aria-label="Primary">
           {content.headerCopy.nav?.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="topbar__nav-link"
-              onClick={(event) => {
-                if (!onNavigate) return
-                event.preventDefault()
-                onNavigate(item.href)
-              }}
-            >
+            <a key={item.href} href={item.href} className="topbar__nav-link">
               {item.label}
             </a>
           ))}

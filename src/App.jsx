@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useMemo, useRef, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import './styles/app-shell.css'
 import { ClosingSection } from './components/ClosingSection/ClosingSection.jsx'
 import { HeroSection } from './components/HeroSection/HeroSection.jsx'
@@ -46,16 +46,8 @@ function renderPageSection(section, siteContent, isPlaying) {
 }
 
 function App() {
-  // Horizontal scroll container for the whole site (Henri-style section swipes).
-  const mainRef = useRef(null)
-
-  // Page panels need refs so nav clicks can snap directly to a section.
-  const panelRefs = useRef(new Map())
-
-  // Tracks horizontal scroll so the header and hero artwork can react to the page position.
-  const [scrollX, setScrollX] = useState(0)
-  const [activePanelIndex, setActivePanelIndex] = useState(0)
-  const [activePanelScrollY, setActivePanelScrollY] = useState(0)
+  // Tracks scroll so the header and hero artwork can react to the page position.
+  const [scrollValue, setScrollValue] = useState(0)
   const [hasEntered, setHasEntered] = useLocalStorageState('zalo_entered', false)
 
   // Centralized preview control so header hover and hero visuals stay in sync.
@@ -70,79 +62,30 @@ function App() {
   const theme = siteContent.theme || {}
 
   // Visible sections are controlled by CMS (pageSections.json).
-  const orderedSections = useMemo(
-    () => siteContent.pageSections.filter((section) => section.isVisible),
-    [siteContent.pageSections]
-  )
+  const orderedSections = siteContent.pageSections.filter((section) => section.isVisible)
 
   useEffect(() => {
-    const scroller = mainRef.current
-    if (!scroller) return
-
     let frameId = 0
 
+    // requestAnimationFrame keeps scroll-driven transforms smooth.
     const handleScroll = () => {
       cancelAnimationFrame(frameId)
       frameId = requestAnimationFrame(() => {
-        setScrollX(scroller.scrollLeft)
-
-        const width = scroller.clientWidth || 1
-        const nextIndex = Math.round(scroller.scrollLeft / width)
-        setActivePanelIndex(Math.max(0, Math.min(nextIndex, orderedSections.length - 1)))
+        setScrollValue(window.scrollY)
       })
     }
 
     handleScroll()
-    scroller.addEventListener('scroll', handleScroll, { passive: true })
+    window.addEventListener('scroll', handleScroll, { passive: true })
 
     return () => {
       cancelAnimationFrame(frameId)
-      scroller.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('scroll', handleScroll)
     }
-  }, [orderedSections.length])
+  }, [])
 
-  useEffect(() => {
-    const scroller = mainRef.current
-    if (!scroller) return
-
-    const sectionKey = orderedSections[activePanelIndex]?.sectionKey
-    const panel = sectionKey ? panelRefs.current.get(sectionKey) : null
-    if (!panel) return
-
-    let frameId = 0
-
-    const handlePanelScroll = () => {
-      cancelAnimationFrame(frameId)
-      frameId = requestAnimationFrame(() => {
-        setActivePanelScrollY(panel.scrollTop || 0)
-      })
-    }
-
-    handlePanelScroll()
-    panel.addEventListener('scroll', handlePanelScroll, { passive: true })
-
-    return () => {
-      cancelAnimationFrame(frameId)
-      panel.removeEventListener('scroll', handlePanelScroll)
-    }
-  }, [activePanelIndex, orderedSections])
-
-  // Subtle parallax on the hero stage. In horizontal mode we tie it to the first swipe,
-  // and also allow vertical scroll inside the active panel to contribute a bit.
-  const heroShift = Math.min((scrollX * 0.02) + (activePanelScrollY * 0.12), 120)
-  const glowShift = Math.min((scrollX * 0.012) + (activePanelScrollY * 0.08), 90)
-  const isHeaderScrolled = scrollX > 24 || activePanelScrollY > 24
-
-  const handleNavigate = (href) => {
-    const targetId = (href || '').replace('#', '')
-    if (!targetId) return
-
-    const scroller = mainRef.current
-    const panel = panelRefs.current.get(targetId)
-    if (!scroller || !panel) return
-
-    scroller.scrollTo({ left: panel.offsetLeft, behavior: 'smooth' })
-  }
+  const heroShift = Math.min(scrollValue * 0.18, 120)
+  const glowShift = Math.min(scrollValue * 0.12, 90)
 
   if (!hasEntered) {
     return (
@@ -178,26 +121,17 @@ function App() {
       <TopBar
         content={siteContent}
         isPreviewActive={isPlaying}
-        isScrolled={isHeaderScrolled}
+        isScrolled={scrollValue > 24}
         onPreviewStart={playPreview}
         onPreviewStop={stopPreview}
-        onNavigate={handleNavigate}
       />
 
-      <main className="page-main page-main--horizontal" ref={mainRef}>
-        {/* Horizontal section rail: each panel is a viewport-sized snap point. */}
+      <main className="page-main">
+        {/* Layout now comes from content data, which is what the admin edits. */}
         {orderedSections.map((section) => (
-          <div
-            key={section.sectionKey}
-            className="page-panel"
-            ref={(node) => {
-              if (node) panelRefs.current.set(section.sectionKey, node)
-              else panelRefs.current.delete(section.sectionKey)
-            }}
-            data-section={section.sectionKey}
-          >
-            <Fragment>{renderPageSection(section, siteContent, isPlaying)}</Fragment>
-          </div>
+          <Fragment key={section.sectionKey}>
+            {renderPageSection(section, siteContent, isPlaying)}
+          </Fragment>
         ))}
       </main>
 

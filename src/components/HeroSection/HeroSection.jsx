@@ -32,13 +32,13 @@ export function HeroSection({ content, isPreviewActive }) {
           </a>
         ) : null}
         <p className="eyebrow">{content.heroCopy.eyebrow}</p>
-        <h1 className="hero__title hero__title--editorial">
+        <h1 className="hero__title">
           <span className="hero__title-main">{content.artistName}</span>
           <span className="hero__title-subline">{content.heroCopy.tagline}</span>
         </h1>
         <p className="hero__lead">{content.heroCopy.lead}</p>
 
-        <div className="hero__actions hero__actions--compact">
+        <div className="hero__actions">
           <a
             className="button button--spotify"
             href={content.spotifyUrl}
@@ -74,21 +74,34 @@ export function HeroSection({ content, isPreviewActive }) {
           </a>
         </div>
 
-        <ul className="fact-list fact-list--editorial">
+        <ul className="fact-list">
           {content.facts.map((fact) => (
             <li key={fact}>{fact}</li>
           ))}
         </ul>
       </div>
 
-      <div className="hero__stage hero__stage--editorial" data-reveal>
-        <div className={`hero__vinyl hero__vinyl--editorial${isPreviewActive ? ' is-active' : ''}`}>
+      <div className="hero__stage" data-reveal>
+        <div className="hero__halo" />
+        <div className="hero__grid" />
+        <div className="hero__beam" />
+        {/* The vinyl reacts to the same hover state as the profile avatar. */}
+        <div className={`hero__vinyl${isPreviewActive ? ' is-active' : ''}`}>
           <img src="/hero-vinyl.svg" alt="" aria-hidden="true" />
         </div>
-        <div className="hero__note hero__note--editorial">
+        <div className="hero__badge">
+          <span>{content.heroCopy.badge.label}</span>
+          <strong>{content.heroCopy.badge.value}</strong>
+        </div>
+        <div className="hero__note hero__note--top">
           <span>{content.heroCopy.topNote.label}</span>
           <strong>{content.heroCopy.topNote.value}</strong>
         </div>
+        <div className="hero__note hero__note--bottom">
+          <span>{content.heroCopy.bottomNote.label}</span>
+          <strong>{content.heroCopy.bottomNote.value}</strong>
+        </div>
+        <div className="hero__title-shadow">{content.artistName}</div>
       </div>
     </section>
   )

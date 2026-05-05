@@ -3,13 +3,13 @@
 
 .page-shell {
   position: relative;
-  /* The site is a horizontal rail of viewport-sized panels. */
-  height: 100svh;
-  overflow: hidden;
+  /* Keep horizontal effects clipped without breaking floating elements. */
+  overflow-x: clip;
+  overflow-y: visible;
 }
 
 .page-main {
-  padding-top: 0;
+  padding-top: 116px;
 }
 
 .section {
@@ -20,49 +20,6 @@
 /* Fixed header needs an anchor offset so section jumps land correctly. */
 .section[id] {
   scroll-margin-top: 130px;
-}
-
-/* Horizontal page rail (inspired by swipeable editorial portfolios). */
-.page-main--horizontal {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-}
-
-.page-panel {
-  flex: 0 0 100vw;
-  height: 100%;
-  overflow-y: auto;
-  overflow-x: hidden;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-  /* Sections already carry their own spacing; we only need a safe offset
-     so the very top of a panel never sits under the floating TopBar. */
-  padding-top: 72px;
-  padding-bottom: 64px;
-}
-
-.page-panel::-webkit-scrollbar,
-.page-main--horizontal::-webkit-scrollbar {
-  height: 10px;
-  width: 10px;
-}
-
-.page-panel::-webkit-scrollbar-thumb,
-.page-main--horizontal::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.16);
-  border-radius: 999px;
-}
-
-.page-panel::-webkit-scrollbar-track,
-.page-main--horizontal::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.04);
 }
 
 /* Shared badge styling reused by multiple sections to keep the UI coherent. */
@@ -94,16 +51,16 @@
   position: relative;
   overflow: hidden;
   border-radius: 999px;
-  border: 1px solid rgba(0, 0, 0, 0.14);
-  background: rgba(255, 255, 255, 0.78);
-  color: #0b0d10;
+  border: 1px solid transparent;
+  background: linear-gradient(135deg, #ecfff8 0%, #bff6e8 44%, #7ed9c6 100%);
+  color: #04110d;
   font-weight: 700;
   text-decoration: none;
   transition:
     transform var(--motion-swift) ease,
     box-shadow var(--motion-swift) ease,
     border-color var(--motion-swift) ease;
-  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 16px 45px rgba(88, 187, 163, 0.28);
 }
 
 .button svg {
@@ -144,8 +101,7 @@
 
 .button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 22px 54px rgba(0, 0, 0, 0.14);
-  border-color: rgba(0, 0, 0, 0.22);
+  box-shadow: 0 22px 54px rgba(126, 217, 198, 0.34);
 }
 
 .button:hover::before {
@@ -153,32 +109,32 @@
 }
 
 .button--secondary {
-  border-color: rgba(0, 0, 0, 0.14);
-  background: rgba(255, 255, 255, 0.72);
+  border-color: var(--border-strong);
+  background: rgba(8, 11, 13, 0.54);
   color: var(--text-strong);
   box-shadow: none;
 }
 
 /* Platform-specific modifiers help the social links feel intentional instead of generic. */
 .button--spotify {
-  border-color: rgba(0, 0, 0, 0.14);
-  background: rgba(255, 255, 255, 0.78);
-  color: var(--text-strong);
-  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.12);
+  border-color: rgba(91, 226, 144, 0.32);
+  background: linear-gradient(135deg, rgba(57, 217, 138, 0.18), rgba(29, 185, 84, 0.14));
+  color: #dffff0;
+  box-shadow: 0 16px 45px rgba(29, 185, 84, 0.16);
 }
 
 .button--spotify .button__icon {
-  color: currentColor;
+  color: #83f0b6;
 }
 
 .button--spotify:hover {
-  box-shadow: 0 22px 54px rgba(0, 0, 0, 0.14);
+  box-shadow: 0 22px 54px rgba(57, 217, 138, 0.24);
 }
 
 .button--apple {
-  border-color: rgba(0, 0, 0, 0.14);
-  background: rgba(255, 255, 255, 0.72);
-  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.1);
+  border-color: rgba(228, 238, 244, 0.24);
+  background: linear-gradient(135deg, rgba(248, 250, 252, 0.15), rgba(193, 210, 221, 0.1));
+  box-shadow: 0 16px 45px rgba(185, 208, 221, 0.12);
 }
 
 .button--apple .button__icon {
@@ -187,13 +143,13 @@
 }
 
 .button--apple:hover {
-  box-shadow: 0 22px 54px rgba(0, 0, 0, 0.14);
+  box-shadow: 0 22px 54px rgba(205, 224, 234, 0.18);
 }
 
 .button--instagram {
-  border-color: rgba(0, 0, 0, 0.14);
-  background: rgba(255, 255, 255, 0.72);
-  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.1);
+  border-color: rgba(244, 169, 203, 0.2);
+  background: linear-gradient(135deg, rgba(255, 90, 95, 0.2), rgba(193, 53, 132, 0.18) 46%, rgba(131, 58, 180, 0.16) 100%);
+  box-shadow: 0 16px 45px rgba(193, 53, 132, 0.12);
 }
 
 .button--instagram .button__icon {
@@ -201,7 +157,7 @@
 }
 
 .button--instagram:hover {
-  box-shadow: 0 22px 54px rgba(0, 0, 0, 0.14);
+  box-shadow: 0 22px 54px rgba(211, 92, 167, 0.18);
 }
 
 /* This row is intentionally shared between hero and contact sections. */
@@ -266,7 +222,7 @@
 
 @media (max-width: 720px) {
   .page-main {
-    padding-top: 0;
+    padding-top: 126px;
   }
 
   .section {
@@ -276,11 +232,6 @@
   .button {
     width: 100%;
     flex-basis: 100%;
-  }
-
-  .page-panel {
-    padding-top: 76px;
-    padding-bottom: 72px;
   }
 }
 
