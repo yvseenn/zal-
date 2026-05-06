@@ -1,25 +1,12 @@
 import './GallerySection.css'
 
-export function GallerySection({ gallery, latestVideo }) {
+export function GallerySection({ gallery }) {
   return (
     <section className="section gallery" id="gallery">
       <div className="gallery__intro" data-reveal>
         <p className="section-tag">Gallery</p>
         <h2>Visuales</h2>
       </div>
-
-      {latestVideo?.youtubeId ? (
-        <div className="gallery__video" data-reveal>
-          <iframe
-            src={`https://www.youtube.com/embed/${latestVideo.youtubeId}`}
-            title={latestVideo.title || 'Videoclip'}
-            loading="lazy"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen
-          />
-        </div>
-      ) : null}
 
       {Array.isArray(gallery) && gallery.length > 0 ? (
         <div className="gallery__grid">

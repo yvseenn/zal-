@@ -20,12 +20,12 @@
   padding: 12px 16px;
   border-radius: 24px;
   pointer-events: auto;
-  backdrop-filter: blur(14px);
-  background: rgba(6, 11, 16, 0.48);
+  backdrop-filter: blur(10px);
+  background: rgba(10, 10, 10, 0.72);
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow:
-    0 18px 50px rgba(0, 0, 0, 0.18),
-    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    0 18px 50px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
   transition:
     backdrop-filter var(--motion-base) ease,
     background-color var(--motion-base) ease,
@@ -37,8 +37,8 @@
 }
 
 .topbar.is-scrolled {
-  backdrop-filter: blur(22px);
-  background: rgba(4, 9, 14, 0.76);
+  backdrop-filter: blur(12px);
+  background: rgba(8, 8, 8, 0.88);
   padding: 10px 14px;
   border-radius: 20px;
   border-color: rgba(255, 255, 255, 0.12);
@@ -92,12 +92,12 @@
 
 .topbar__avatar-button:hover .topbar__avatar {
   transform: translateY(-1px) scale(1.03);
-  box-shadow: 0 16px 36px rgba(63, 152, 206, 0.24);
-  border-color: rgba(173, 239, 255, 0.34);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.24);
+  border-color: rgba(255, 255, 255, 0.26);
 }
 
 .topbar__avatar-button:focus-visible {
-  outline: 1px solid rgba(143, 230, 255, 0.92);
+  outline: 1px solid rgba(255, 255, 255, 0.72);
   outline-offset: 4px;
 }
 
@@ -153,9 +153,9 @@
 }
 
 .topbar__status.is-active {
-  color: #041018;
-  background: linear-gradient(135deg, #e1fbff 0%, #9ae8ff 46%, #47b7ec 100%);
-  border-color: transparent;
+  color: #0b0b0b;
+  background: #f2f2f2;
+  border-color: #f2f2f2;
 }
 
 .topbar__nav {
@@ -185,7 +185,7 @@
 
 .topbar__nav-link:hover {
   transform: translateY(-1px);
-  border-color: rgba(143, 230, 255, 0.28);
+  border-color: rgba(255, 255, 255, 0.24);
   color: var(--text-strong);
 }
 

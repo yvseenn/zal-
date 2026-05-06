@@ -206,7 +206,7 @@ collections:
             allow_add: true
             summary: "{{fields.sectionKey}}"
             fields:
-              - { label: "Section Key", name: "sectionKey", widget: "select", options: ["intro", "bio", "works", "gallery", "contact"] }
+              - { label: "Section Key", name: "sectionKey", widget: "select", options: ["intro", "bio", "works", "timeline", "video", "gallery", "contact"] }
               - { label: "Visible", name: "isVisible", widget: "boolean", default: true }
               - { label: "Variant", name: "variant", widget: "string", required: false }
               # Config is intentionally omitted from the editor. Keep it in JSON as `{}` for future use.

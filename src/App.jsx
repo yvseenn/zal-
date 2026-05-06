@@ -7,6 +7,7 @@ import { TopBar } from './components/TopBar/TopBar.jsx'
 import { VideoSection } from './components/VideoSection/VideoSection.jsx'
 import { BioSection } from './components/BioSection/BioSection.jsx'
 import { GallerySection } from './components/GallerySection/GallerySection.jsx'
+import { TimelineSection } from './components/TimelineSection/TimelineSection.jsx'
 import { usePreviewAudio } from './hooks/usePreviewAudio.js'
 import { useRevealOnScroll } from './hooks/useRevealOnScroll.js'
 import { siteContent } from './content/siteContent.js'
@@ -34,8 +35,12 @@ function renderPageSection(section, siteContent, isPlaying) {
           releases={siteContent.releases}
         />
       )
+    case 'timeline':
+      return <TimelineSection timeline={siteContent.timeline} />
+    case 'video':
+      return <VideoSection latestVideo={siteContent.latestVideo} />
     case 'gallery':
-      return <GallerySection gallery={siteContent.gallery} latestVideo={siteContent.latestVideo} />
+      return <GallerySection gallery={siteContent.gallery} />
     case 'contact':
       return (
         <ClosingSection content={siteContent} />
@@ -92,7 +97,7 @@ function App() {
       <div className="page-shell">
         <EntryScreen
           title={`${siteContent.artistName} — 2026`}
-          subtitle="BIO / WORKS / GALLERY / CONTACT"
+          subtitle="BIO / WORKS / CV / VIDEO / GALLERY / CONTACT"
           onEnter={() => setHasEntered(true)}
         />
       </div>

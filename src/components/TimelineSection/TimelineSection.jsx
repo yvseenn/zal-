@@ -3,7 +3,7 @@ import './TimelineSection.css'
 // Timeline keeps the project history readable and easy to extend year by year.
 export function TimelineSection({ timeline }) {
   return (
-    <section className="section timeline-layout">
+    <section className="section timeline-layout" id="timeline">
       <div className="timeline-layout__headline" data-reveal>
         <p className="section-tag">CV</p>
         <h2>Trayectoria reciente</h2>

@@ -73,6 +73,8 @@
     "nav": [
       { "label": "BIO", "href": "#bio" },
       { "label": "WORKS", "href": "#works" },
+      { "label": "CV", "href": "#timeline" },
+      { "label": "VIDEO", "href": "#video" },
       { "label": "GALLERY", "href": "#gallery" },
       { "label": "CONTACT", "href": "#contact" }
     ]

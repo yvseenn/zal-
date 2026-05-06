@@ -9,9 +9,8 @@
   padding: 34px;
   border: 1px solid var(--border);
   background:
-    radial-gradient(circle at top left, rgba(140, 238, 214, 0.18), transparent 36%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
-    rgba(7, 10, 12, 0.66);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.015)),
+    rgba(10, 10, 10, 0.82);
   border-radius: 30px;
   box-shadow: var(--panel-shadow);
 }

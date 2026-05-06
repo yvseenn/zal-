@@ -1,13 +1,12 @@
 {
-  "accent": "#93f0d5",
-  "accentStrong": "#e0fff7",
-  "textStrong": "#f3f7f9",
-  "text": "rgba(220, 229, 234, 0.86)",
-  "textSoft": "rgba(198, 212, 219, 0.84)",
-  "textDim": "rgba(152, 171, 180, 0.68)",
-  "border": "rgba(182, 222, 214, 0.18)",
-  "borderStrong": "rgba(210, 240, 234, 0.3)",
-  "surfaceTint": "rgba(180, 232, 220, 0.085)",
-  "surfaceHighlight": "rgba(255, 255, 255, 0.018)"
+  "accent": "#f2f2f2",
+  "accentStrong": "#ffffff",
+  "textStrong": "#f6f6f6",
+  "text": "rgba(232, 232, 232, 0.84)",
+  "textSoft": "rgba(198, 198, 198, 0.82)",
+  "textDim": "rgba(140, 140, 140, 0.72)",
+  "border": "rgba(255, 255, 255, 0.12)",
+  "borderStrong": "rgba(255, 255, 255, 0.18)",
+  "surfaceTint": "rgba(255, 255, 255, 0.028)",
+  "surfaceHighlight": "rgba(255, 255, 255, 0.012)"
 }
-
