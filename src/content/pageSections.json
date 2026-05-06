@@ -13,6 +13,12 @@
       "config": {}
     },
     {
+      "sectionKey": "video",
+      "isVisible": true,
+      "variant": "default",
+      "config": {}
+    },
+    {
       "sectionKey": "gallery",
       "isVisible": true,
       "variant": "default",
@@ -26,12 +32,6 @@
     },
     {
       "sectionKey": "timeline",
-      "isVisible": true,
-      "variant": "default",
-      "config": {}
-    },
-    {
-      "sectionKey": "video",
       "isVisible": true,
       "variant": "default",
       "config": {}
